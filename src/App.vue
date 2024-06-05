@@ -1,28 +1,27 @@
-
 <template>
-    <div id="app">
-      <Menu />
-      <section class="panel-tools">
-        <div class="section">
-         
-        </div>
-      </section>
-    </div>
-  </template>
-  
+  <div id="#app">
+    <Menu />
+  </div>
+</template>
 
+<script>
+import Menu from './components/Menu.vue';
 
+export default {
+  components: {
+    Menu,
+  },
+};
+</script>
 
-  <script>
-  import Menu from './components/Menu.vue';
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
-  export default {
-    components: {
-      Menu,
-    },
-  };
-  </script>
-  
-  <style scoped>
-
-  </style>
+#app {
+  margin: 0;
+  padding: 0;
+}
+</style>

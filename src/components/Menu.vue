@@ -6,9 +6,9 @@
           <div class="menu-pole-link-about-us" id="app">
             <nav>
               <i class="menu-pole-link-down" @click="show = !show">
-
-                <a class="menu-pole-link" href="#">Про нас <img :src="downArrow" class="menu-pole-img"></a>
-
+                <a class="menu-pole-link" href="#">
+                  Про нас <img :src="downArrow" class="menu-pole-img">
+                </a>
               </i>
               <transition name="fade">
                 <ul v-if="show" class="sub-menu-links">
@@ -26,8 +26,11 @@
           </ul>
         </div>
         <div class="menu-login">
-              
-              <a href="#" class="menu-pole-login"><div class="menu-login-href"><img :src="groupImage" class="menu-pole-login-img" alt="">Вхід | Реєстрація</div></a>
+          <a href="#" class="menu-pole-login">
+            <div class="menu-login-href">
+              <img :src="groupImage" class="menu-pole-login-img" alt="">Вхід | Реєстрація
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -35,7 +38,15 @@
 
   <section>
     <div class="section">
-      <div class=""></div>
+      <div class="menu-tools">
+        <div class="menu-tools-first">
+          <img :src="logobrend" alt="" class="menu-tools-logo">
+          <SearchPole />
+          <div class="menu-tools-phone">
+            <PhoneButton />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -43,12 +54,20 @@
 <script>
 import downArrow from '../assets/down-arrow.png';
 import groupImage from '../assets/Group.svg';
+import logobrend from '../assets/Logo-brend.svg';
+import PhoneButton from './PhoneButton.vue'; 
+import SearchPole from './Search_pole.vue'; 
 
 export default {
+  components: {
+    PhoneButton, 
+    SearchPole
+  },
   data() {
     return {
       downArrow,
       groupImage,
+      logobrend,
       show: false,
       items: ['Наша команда', 'Партнери', 'Договір'],
     };
@@ -57,17 +76,20 @@ export default {
 </script>
 
 <style scoped>
-.menu-login-href{
+.menu-login-href {
   align-items: center;
   display: flex;
+  margin-right: 20px;
 }
-.fade-enter-active, .fade-leave-active{
-  transition: opacity .3s ease ;
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s ease;
 }
 
 .fade-enter,
-.fade-leave-to{
-  opacity:0;
+.fade-leave-to {
+  opacity: 0;
 }
 
 .menu {
@@ -101,14 +123,15 @@ export default {
   margin-right: 20px;
   flex-direction: column;
 }
-.menu-item{
+
+.menu-item {
   align-items: center;
   color: #fff;
   cursor: pointer;
-  list-style-type: none;;
-
+  list-style-type: none;
   transition: all .3s ease;
 }
+
 .main-menu-links {
   display: flex;
   list-style: none;
@@ -128,7 +151,7 @@ export default {
   display: flex;
   list-style: none;
   flex-direction: column;
-  position: fixed; /* Зміна з absolute на fixed */
+  position: fixed;
   background: #347153;
   padding: 10px 0;
   z-index: 1000;
@@ -136,17 +159,13 @@ export default {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   justify-content: space-between;
-  margin-top:0 ;
+  margin-top: 0;
 }
 
 .sub-menu-links li {
   margin-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
-}
-
-.menu-login :hover  {
-  background-color: #347153;
 }
 
 .menu-pole-link {
@@ -158,6 +177,7 @@ export default {
   align-items: center;
   display: block;
   padding: 10px 0;
+  margin-right: 10px;
 }
 
 .menu-pole-img {
@@ -172,6 +192,7 @@ i {
   display: flex;
   align-items: center;
   padding-left: 20px;
+  margin-right: 20px;
   border-left: 1px solid #ccc;
 }
 
@@ -182,6 +203,7 @@ i {
   font-family: var(--font-family);
   text-decoration: none;
   margin-top: 1px;
+  padding: 10px 0;
 }
 
 .menu-pole-login-img {
@@ -197,6 +219,10 @@ i {
   color: #84BE51;
 }
 
+.menu-login :hover {
+  background-color: #347153;
+  color: #84BE51;
+}
 .menu-pole-link-down :hover {
   background-color: #347153;
 }
@@ -208,4 +234,16 @@ main {
   width: 100%;
   background: #1e6140;
 }
+
+.menu-tools-first {
+  display: flex;
+  margin-top: 20px;
+}
+
+.menu-tools-logo {
+  width: 158px;
+  height: 71px;
+  margin-left: 3px;
+}
+
 </style>
