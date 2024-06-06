@@ -86,6 +86,7 @@
   }
   
   .sub-phone-menu-links {
+    margin-left: 50px;
     display: flex;
     list-style: none;
     flex-direction: column;

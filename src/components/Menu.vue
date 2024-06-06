@@ -43,7 +43,9 @@
           <img :src="logobrend" alt="" class="menu-tools-logo">
           <SearchPole />
           <div class="menu-tools-phone">
-            <PhoneButton />
+            <PhoneLogik />
+            <LikeButtone />
+            <Comparison />
           </div>
         </div>
       </div>
@@ -55,13 +57,17 @@
 import downArrow from '../assets/down-arrow.png';
 import groupImage from '../assets/Group.svg';
 import logobrend from '../assets/Logo-brend.svg';
-import PhoneButton from './PhoneButton.vue'; 
+import PhoneLogik from './PhoneLogik.vue'; 
 import SearchPole from './Search_pole.vue'; 
+import LikeButtone from './Like_buttone.vue'; 
+import Comparison from './Comparison.vue';
 
 export default {
   components: {
-    PhoneButton, 
-    SearchPole
+    PhoneLogik, 
+    SearchPole,
+    LikeButtone,
+    Comparison,
   },
   data() {
     return {
