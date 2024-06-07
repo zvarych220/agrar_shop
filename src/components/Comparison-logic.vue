@@ -36,6 +36,8 @@
   
   <style scoped>
   button {
+    margin-left: 15px;
+    margin-top: 13px;
     padding: 0;
     background-color: #fff;
     border: none;

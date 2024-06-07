@@ -4,28 +4,28 @@
     @mouseout="handleMouseOut"
     @click="handleClick"
   >
-    <img :src="currentImage" alt="like button" />
+    <img :src="currentImage" alt="Shop button" />
   </button>
 </template>
 
 <script>
-import likeButtonImage from '../assets/like.svg';
-import likeButtonImageHover from '../assets/like-hover.svg';
+import Shop from '../assets/shop.svg';
+import Shop_hover from '../assets/shop-hover.svg';
 
 export default {
   data() {
     return {
-      likeButtonImage,
-      likeButtonImageHover,
-      currentImage: likeButtonImage
+      Shop,
+      Shop_hover,
+      currentImage: Shop
     };
   },
   methods: {
     handleMouseOver() {
-      this.currentImage = this.likeButtonImageHover;
+      this.currentImage = this.Shop_hover;
     },
     handleMouseOut() {
-      this.currentImage = this.likeButtonImage;
+      this.currentImage = this.Shop;
     },
     handleClick() {
       // Add your click handling logic here
@@ -36,8 +36,8 @@ export default {
 
 <style scoped>
 button {
+  margin-left: 15px;
   margin-top: 13px;
-  margin-left: 58px;
   padding: 0;
   background-color: #fff;
   border: none;

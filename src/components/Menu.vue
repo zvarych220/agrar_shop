@@ -46,7 +46,15 @@
             <PhoneLogik />
             <LikeButtone />
             <Comparison />
+            <Shop />
           </div>
+        </div>
+        <div class="menu-tools-second">
+          <Environment />
+          <Plants_protecting_tools /> 
+          <Fertilizers />
+          <Feed_group />
+          <Help_the_agronomist />
         </div>
       </div>
     </div>
@@ -60,7 +68,13 @@ import logobrend from '../assets/Logo-brend.svg';
 import PhoneLogik from './PhoneLogik.vue'; 
 import SearchPole from './Search_pole.vue'; 
 import LikeButtone from './Like_buttone.vue'; 
-import Comparison from './Comparison.vue';
+import Comparison from './Comparison-logic.vue';
+import Shop from './Shop.vue';
+import Environment from './Environment.vue';
+import Plants_protecting_tools from './Plants_protecting_tools.vue';
+import Fertilizers from "./Fertilizers.vue";
+import Feed_group from "./Feed_group.vue";
+import Help_the_agronomist from "./Help_the_agronomist.vue";
 
 export default {
   components: {
@@ -68,6 +82,12 @@ export default {
     SearchPole,
     LikeButtone,
     Comparison,
+    Shop,
+    Environment,
+    Plants_protecting_tools,
+    Fertilizers,
+    Feed_group,
+    Help_the_agronomist,
   },
   data() {
     return {
@@ -229,6 +249,7 @@ i {
   background-color: #347153;
   color: #84BE51;
 }
+
 .menu-pole-link-down :hover {
   background-color: #347153;
 }
@@ -241,9 +262,16 @@ main {
   background: #1e6140;
 }
 
-.menu-tools-first {
+.menu-tools {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-tools-first {
   margin-top: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .menu-tools-logo {
@@ -252,4 +280,16 @@ main {
   margin-left: 3px;
 }
 
+.menu-tools-phone {
+  display: flex;
+  align-items: center;
+}
+
+.menu-tools-second {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 </style>
