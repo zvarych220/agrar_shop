@@ -39,7 +39,7 @@
     margin-left: 15px;
     margin-top: 13px;
     padding: 0;
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.0);
     border: none;
     cursor: pointer;
     display: flex;

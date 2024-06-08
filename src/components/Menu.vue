@@ -168,10 +168,12 @@ export default {
 }
 
 .main-menu-links li {
-  margin-right: 20px;
+ /* Зменшення відступів */
   flex: 1;
   text-align: center;
+  white-space: nowrap; /* Запобігає перенесенню тексту на наступний рядок */
 }
+
 
 .sub-menu-links {
   display: flex;
