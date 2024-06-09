@@ -56,11 +56,17 @@
               обізнаність клієнтів щодо сучасних методів ведення рослинництва...
             </p>
             <About_use_btn />
+            
           </div>
+          
         </div>
+        
       </div>
+      
     </section>
+    <Novelty /> 
   </div>
+
 </template>
 
 
@@ -78,11 +84,14 @@ import Leaf_to_the_left from './assets/leaf_to_the_left.png';
 import Leaf_to_the_right from './assets/leaf_to_the_right.png';
 import About_use_btn from './components/index/About_use.vue';
 
+import Novelty from './components/index/Novelty.vue';
+
 export default {
   components: {
     Menu,
     About_the_company,
     About_use_btn,
+    Novelty,
   },
   data() {
     return {
