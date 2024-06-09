@@ -102,6 +102,7 @@ export default {
 </script>
 
 <style scoped>
+
 .menu-login-href {
   align-items: center;
   display: flex;
@@ -268,6 +269,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 180px;
 }
 
 .menu-tools-first {

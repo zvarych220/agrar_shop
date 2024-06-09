@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 button {
-  margin-left: 15px;
+  margin-left: 30px;
   margin-top: 13px;
   padding: 0;
   background-color: rgba(0, 0, 0, 0.0);

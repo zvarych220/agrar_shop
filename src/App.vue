@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <Menu />
-    <section>
+    <section class="index">
       <img class="red-image" :src="Red" alt="Red overlay image">
-      <div class="agricultural-online-store">
-        
+      <div class="agricultural-online">
+        <div class="agricultural-online-store"></div>
         <div class="section">
           <div class="index-elements">
             <div class="index-elements-h1">
@@ -14,14 +14,15 @@
             <p class="index-elements-p">інтернет-магазин</p>
             <p class="index-elements-p-info">Основна сфера діяльності – дистрибуція насіння, засобів захисту рослин,
               мінеральних макро - та мікродобрив</p>
-              
-              <About_the_company />
+            <About_the_company />
           </div>
-          
         </div>
-        
+        <div class="WorkMan-container">
+          <img :src="WorkMan" alt="" class="WorkMan">
+          <img :src="Two_leaves" alt="" class="Two_leaves">
+          <img :src="One_leaf" alt="" class="One_leaf">
+        </div>
       </div>
-      
     </section>
   </div>
 </template>
@@ -30,10 +31,11 @@
 import Menu from './components/Menu.vue';
 import PhotoIndex from './assets/photo-index.png';
 import Red from './assets/red.png';
-import Work_man from './assets/work-man.png';
+import WorkMan from './assets/work-man.png';
 import Xz from './assets/xz.svg';
 import About_the_company from './components/index-buttone/About_the_company.vue';
-
+import Two_leaves from './assets/two_leaves.png';
+import One_leaf from './assets/one_leaf.png';
 
 export default {
   components: {
@@ -44,12 +46,15 @@ export default {
     return {
       PhotoIndex,
       Red,
-      Work_man,
+      WorkMan,
       Xz,
+      Two_leaves,
+      One_leaf,
     };
   }
 };
 </script>
+
 
 <style>
 :root {
@@ -75,23 +80,16 @@ body {
 }
 
 .agricultural-online-store {
-  margin-top: -145px;
-
-  min-height: 100vh;
-
-  max-width: 1270px;
+  height: 1000px;
+  width: 1277px;
+  margin-top: -180px;
   z-index: -10;
   overflow-x: hidden;
   content: "";
   position: absolute;
-
   background-image: url('./assets/photo-index.png');
   background-size: cover;
   z-index: -10;
-}
-
-.agricultural-online-store::before {
-  
 }
 
 .red-image {
@@ -101,14 +99,13 @@ body {
   top: -172px;
   right: -250px;
   z-index: 1;
-
 }
 
-
 .index-elements {
+  padding-top: 150px;
   margin-left: 13px;
-  width: 605px;
-  height: 262px;
+  height: 350px;
+  overflow: hidden;
 }
 
 .index-elements-xz {
@@ -120,10 +117,8 @@ body {
 .index-elements-h1 {
   display: flex;
   align-items: center;
-  margin-top: 385px;
+  margin-top: 50px;
 }
-
-
 
 h1 {
   font-family: var(--font-family);
@@ -148,5 +143,35 @@ h1 {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.5);
   margin-left: 30px;
+  max-width: 500px;
+}
+
+.WorkMan-container {
+  overflow: hidden;
+}
+
+.WorkMan {
+  width: 800px;
+  height: 690px;
+  position: absolute;
+  top: 350px;
+  right: 0;
+  z-index: 2;
+}
+
+.Two_leaves {
+  position: absolute;
+  top: 750px;
+  right: 708px;
+  margin-left: 600px;
+  z-index: 3;
+}
+
+.One_leaf {
+  position: absolute;
+  top: 230px;
+  right: 50px;
+  margin-left: 600px;
+  z-index: 3;
 }
 </style>

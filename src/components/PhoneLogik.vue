@@ -42,7 +42,7 @@
   
   <style scoped>
   .buttone-phone {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.0);
     width: 40px;
     height: 40px;
     border: none;
