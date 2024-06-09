@@ -1,31 +1,30 @@
 <template>
-    <section class="index">
-      <img class="red-image" :src="Red" alt="Red overlay image">
-      <div class="agricultural-online">
-        <div class="agricultural-online-store"></div>
-        <div class="section">
-          <div class="index-elements">
-            <div class="index-elements-h1">
-              <img :src="Xz" alt="" class="index-elements-xz">
-              <h1>Аграрний</h1>
-            </div>
-            <p class="index-elements-p">інтернет-магазин</p>
-            <p class="index-elements-p-info">Основна сфера діяльності – дистрибуція насіння, засобів захисту рослин,
-              мінеральних макро - та мікродобрив</p>
-            <About_the_company />
+  <section class="index">
+    <img class="red-image" :src="Red" alt="Red overlay image">
+    <div class="agricultural-online">
+      <div class="agricultural-online-store"></div>
+      <div class="section">
+        <div class="index-elements">
+          <div class="index-elements-h1">
+            <img :src="Xz" alt="" class="index-elements-xz">
+            <h1>Аграрний</h1>
           </div>
-        </div>
-        <div class="WorkMan-container">
-          <img :src="WorkMan" alt="" class="WorkMan">
-          <img :src="Two_leaves" alt="" class="Two_leaves">
-          <img :src="One_leaf" alt="" class="One_leaf">
+          <p class="index-elements-p">інтернет-магазин</p>
+          <p class="index-elements-p-info">Основна сфера діяльності – дистрибуція насіння, засобів захисту рослин,
+            мінеральних макро - та мікродобрив</p>
+          <About_the_company />
         </div>
       </div>
-    </section>
+      <div class="WorkMan-container">
+        <img :src="WorkMan" alt="" class="WorkMan">
+        <img :src="Two_leaves" alt="" class="Two_leaves">
+        <img :src="One_leaf" alt="" class="One_leaf">
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-
 import PhotoIndex from '@/assets/photo-index.png';
 import Red from '@/assets/red.png';
 import WorkMan from '@/assets/work-man.png';
@@ -51,39 +50,37 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .section {
-  margin-left: 400px;
-  margin-right: 420px;
+  margin: 0 auto;
+  max-width: 1277px;
 }
 
 .agricultural-online-store {
+  margin-top: -765px;
   height: 1000px;
-  width: 1277px;
-  margin-top: -180px;
-  z-index: -10;
-  content: "";
-  position: absolute;
+  width: 1281px;
   background-image: url('@/assets/photo-index.png');
   background-size: cover;
-  z-index: -10;
+  position: relative;
+  z-index: -1;
 }
 
 .red-image {
-  position: absolute;
   height: 580px;
   width: 580px;
   top: -172px;
   right: -250px;
   z-index: 1;
+  position: relative;
 }
 
 .index-elements {
-  padding-top: 150px;
-  margin-left: 13px;
+  margin-top: -650px;
   height: 350px;
   overflow: hidden;
+  text-align: left;
+  margin-left: 100px;
 }
 
 .index-elements-xz {
@@ -125,32 +122,34 @@ h1 {
 }
 
 .WorkMan-container {
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+  margin-top: -390px;
+  margin-left: 1110px;
+  width: 800px; /* Ensure the container has the same width as WorkMan */
+  height: 690px; /* Ensure the container has the same height as WorkMan */
 }
 
 .WorkMan {
-  width: 800px;
-  height: 690px;
-  position: absolute;
-  top: 350px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
   right: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .Two_leaves {
   position: absolute;
-  top: 750px;
-  right: 708px;
-  margin-left: 600px;
+  top: 60%; /* Adjust to desired position relative to WorkMan */
+  left: -150px; /* Adjust to desired position relative to WorkMan */
   z-index: 3;
 }
 
 .One_leaf {
   position: absolute;
-  top: 230px;
-  right: 50px;
-  margin-left: 600px;
+  top: -17%; /* Adjust to desired position relative to WorkMan */
+  right: 100px; /* Adjust to desired position relative to WorkMan */
   z-index: 3;
 }
-
 </style>

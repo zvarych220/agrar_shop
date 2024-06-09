@@ -63,7 +63,7 @@ export default {
 
 <style>
 .about_us {
-  margin-top: 418px;
+  margin-top: 108px;
   
 }
 

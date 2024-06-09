@@ -97,12 +97,12 @@
   
   <style scoped>
   .product {
-    margin-top: 700px;
+    margin-top: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #F8F8F8;
-
+    margin-bottom: 120px;
   }
   
   :root {
