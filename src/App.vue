@@ -55,6 +55,7 @@
               рентабельності рослинництва в мінливих кліматичних умовах України. Також ставимо собі завдання підвищувати
               обізнаність клієнтів щодо сучасних методів ведення рослинництва...
             </p>
+            <About_use_btn />
           </div>
         </div>
       </div>
@@ -69,17 +70,19 @@ import PhotoIndex from './assets/photo-index.png';
 import Red from './assets/red.png';
 import WorkMan from './assets/work-man.png';
 import Xz from './assets/xz.svg';
-import About_the_company from './components/index-buttone/About_the_company.vue';
+import About_the_company from './components/index/About_the_company.vue';
 import Two_leaves from './assets/two_leaves.png';
 import One_leaf from './assets/one_leaf.png';
 import Jugs from './assets/jugs.png';
 import Leaf_to_the_left from './assets/leaf_to_the_left.png';
 import Leaf_to_the_right from './assets/leaf_to_the_right.png';
+import About_use_btn from './components/index/About_use.vue';
 
 export default {
   components: {
     Menu,
     About_the_company,
+    About_use_btn,
   },
   data() {
     return {
@@ -252,12 +255,14 @@ h2 {
   font-size: 45px;
   color: #000;
   white-space: nowrap;
+  margin-left: 15px;
 }
 
 .about_us-Jugs {
   position: absolute;
 }
 .about_us_text-title{
+  height: 50px;
   display: flex;
   align-items: center;
 }
@@ -280,5 +285,6 @@ color: #1e6140;
 }
 .about_us_text_container{
   width: 520px;
+  font-family: var(--font-family);
 }
 </style>
