@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Menu />
+
     <section class="index">
       <img class="red-image" :src="Red" alt="Red overlay image">
       <div class="agricultural-online">
@@ -24,8 +25,43 @@
         </div>
       </div>
     </section>
+
+    <section class="about_us">
+      <div class="about_us-Jugs">
+        <div class="Jugs-container">
+          <img :src="Jugs" alt="" class="Jugs">
+          <img :src="Leaf_to_the_left" alt="" class="Leaf_to_the_left">
+          <img :src="Leaf_to_the_right" alt="" class="Leaf_to_the_right">
+        </div>
+        <div class="about_us_text">
+          <div class="about_us_text-title">
+            <img :src="Xz" alt="" class="about_us_text-xz">
+            <h2>Про нас</h2>
+          </div>
+          <div class="about_us_text_container">
+            <p class="about_us_text_p"> <span class="green-color">«Компанія ТОВ “ДАМАР АГРОТРЕЙД”</span> — молода
+              команда, яка з’явилась на
+              аграрному ринку у 2020 році. Ми не боїмось труднощів і викликів. Тому навіть складний ковідний період,
+              світова пандемія не стали на заваді успішному старту.</p>
+              <p class="about_us_text_p">Отже,<span class="green-color"> ми — сміливі, ми — драйвові</span>, ми — ті, що розвивають рослинництво та
+              допомагають ставати успішними
+              тисячам вітчизняних аграріїв.</p>
+              <p class="about_us_text_p"><span class="green-color">Бачення:</span> компанія ТОВ “ДАМАР АГРОТРЕЙД” тримає курс на підвищення
+              престижності, довіри до засобів захисту
+              рослин made in UA. Прагнемо, аби в кожному регіоні України наш споживач мав доступ до якісної продукції та
+              консалтингу від фахівців команди.</p>
+              <p class="about_us_text_p"><span class="green-color">Місія:</span> усе продуктове портфоліо, консультативні послуги ТОВ “ДАМАР
+              АГРОТРЕЙД” направлені на підвищення
+              рентабельності рослинництва в мінливих кліматичних умовах України. Також ставимо собі завдання підвищувати
+              обізнаність клієнтів щодо сучасних методів ведення рослинництва...
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
+
 
 <script>
 import Menu from './components/Menu.vue';
@@ -36,6 +72,9 @@ import Xz from './assets/xz.svg';
 import About_the_company from './components/index-buttone/About_the_company.vue';
 import Two_leaves from './assets/two_leaves.png';
 import One_leaf from './assets/one_leaf.png';
+import Jugs from './assets/jugs.png';
+import Leaf_to_the_left from './assets/leaf_to_the_left.png';
+import Leaf_to_the_right from './assets/leaf_to_the_right.png';
 
 export default {
   components: {
@@ -50,6 +89,9 @@ export default {
       Xz,
       Two_leaves,
       One_leaf,
+      Jugs,
+      Leaf_to_the_left,
+      Leaf_to_the_right,
     };
   }
 };
@@ -75,8 +117,8 @@ body {
 }
 
 .section {
-  margin-left: 404px;
-  margin-right: 422px;
+  margin-left: 400px;
+  margin-right: 420px;
 }
 
 .agricultural-online-store {
@@ -84,7 +126,7 @@ body {
   width: 1277px;
   margin-top: -180px;
   z-index: -10;
-  overflow-x: hidden;
+
   content: "";
   position: absolute;
   background-image: url('./assets/photo-index.png');
@@ -173,5 +215,70 @@ h1 {
   right: 50px;
   margin-left: 600px;
   z-index: 3;
+}
+
+.about_us {
+  margin-top: 418px;
+}
+
+.Jugs-container {
+  overflow: hidden;
+  padding-left: 286px;
+  position: absolute;
+}
+
+.Jugs {
+  height: 557px;
+  width: 683px;
+}
+
+.Leaf_to_the_left {
+  position: absolute;
+  left: 230px;
+  top: 298px;
+  z-index: 3;
+}
+
+.Leaf_to_the_right {
+  position: absolute;
+  left: 360px;
+  top: 460px;
+  z-index: 3;
+}
+
+h2 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 45px;
+  color: #000;
+  white-space: nowrap;
+}
+
+.about_us-Jugs {
+  position: absolute;
+}
+.about_us_text-title{
+  display: flex;
+  align-items: center;
+}
+.about_us_text {
+  position: absolute;
+  right: 1;
+  width: 150px;
+  padding-left: 1090px;
+  top: 0;
+}
+.about_us_text_p{
+  font-weight: 700;
+color: rgba(0, 0, 0, 0.5);
+
+}
+.green-color{
+  font-weight: 700;
+font-size: 16px;
+color: #1e6140;
+}
+.about_us_text_container{
+  width: 520px;
 }
 </style>
