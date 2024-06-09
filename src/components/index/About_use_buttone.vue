@@ -11,6 +11,8 @@
   <script>
   import About_use_btn from '@/assets/About_use_btn.svg';
   import About_use_btn_hover from '@/assets/About_use_btn_hover.svg';
+
+
   
   export default {
     data() {

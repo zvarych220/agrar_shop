@@ -1,233 +1,215 @@
 <template>
-  <section class="product">
-    
-    <div class="product-container">
-      <div class="product-card" v-for="(product, index) in visibleProducts" :key="index">
-        <div class="product-image">
-          
-          <img :src="product.image" class="product-thumb" alt="">
+    <section class="product">
+      <div class="section-product">
+        <button class="btn-left" @click="previous" @mouseover="leftImage = left_hover" @mouseleave="leftImage = left">
+          <img :src="leftImage" alt="Left Arrow" />
+        </button>
+        <div class="product-list">
+          <h2 class="product-title">
+            <img :src="Xz" alt="Xz" /> Новинки <img :src="Xz_2" alt="Xz_2" />
+          </h2>
+          <div v-for="product in visibleProducts" :key="product.id" class="product-container">
+            <img :src="product.image" alt="" class="product-container-img" />
+            <div class="product-container-info">
+              <h3 class="product-container-info-title">
+                {{ product.title }}
+              </h3>
+              <p class="product-container-info-In-stock">
+                {{ product.inStock }}
+              </p>
+              <div class="product-container-info-In">
+                <div class="product-container-info-detailing">
+                  <p class="price">{{ product.price }} грн</p>
+                  <p class="number">{{ product.quantity }} шт</p>
+                </div>
+                <Shop />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="product-info">
-          <h2 class="product-brand">{{ product.brand }}</h2>
-          <p class="product-short-description">{{ product.description }}</p>
-          <span class="price">{{ product.price }}</span><span class="actual-price">{{ product.actualPrice }}</span>
-        </div>
+        <button class="btn-right" @click="next" @mouseover="rightImage = right_hover" @mouseleave="rightImage = right">
+          <img :src="rightImage" alt="Right Arrow" />
+        </button>
       </div>
-    </div>
-    <button class="pre-btn" @click="scrollLeft"><img :src="left" alt=""></button>
-    <button class="nxt-btn" @click="scrollRight"><img :src="right" alt=""></button>
-  </section>
-</template>
-
-<script>
-import left from '@/assets/slider/left.svg';
-import right from '@/assets/slider/right.svg';
-
-import Petunia_Sophistica_F1 from '@/assets/slider/Petunia_Sophistica_F1.png';
-import Petunia_Sophistica from '@/assets/slider/Petunia_Sophistica.png';
-import speed_2 from '@/assets/slider/speed_2.png';
-import speed from '@/assets/slider/speed.png';
-
-export default {
-  data() {
-    return {
-      left,
-      right,
-      speed_2,
-      speed, 
-      Petunia_Sophistica_F1,
-      Petunia_Sophistica,
-      products: [
-        {
-          id: 1,
-          image:  speed_2,
-          brand: 'Скор 250 ЕС к.э.',
-          description: 'Є в наявності',
-          price: '200 грн',
-        },
-        {
-          id: 2,
-          image:  speed,
-          brand: 'Скор 250 ЕС к.э.',
-          description: 'Є в наявності',
-          price: '20 грн',
-        },
-        {
-          id: 3,
-          image: Petunia_Sophistica_F1,
-          brand: 'Петунія Софістика F1',
-          description: 'Є в наявності',
-          price: '200 грн',
-        },
-        {
-          id: 4,
-          image: Petunia_Sophistica,
-          brand: 'Петунія Софістика',
-          description: 'Є в наявності',
-          price: '20 грн',
-        },
-        {
-          id: 5,
-          image: left,
-          brand: 'Brand 2',
-          description: 'Є в наявності',
-          price: '$25',
-        },
-        {
-          id: 6,
-          image: right,
-          brand: 'Brand 3',
-          description: 'Є в наявності',
-          price: '$30',
-        },
-      ],
-      startIndex: 0,
-      endIndex: 4,
-    };
-  },
-  computed: {
-    visibleProducts() {
-      return this.products.slice(this.startIndex, this.endIndex);
-    }
-  },
-  methods: {
-    scrollLeft() {
-      if (this.startIndex > 0) {
-        this.startIndex--;
-        this.endIndex--;
-      }
-    },
-    scrollRight() {
-      if (this.endIndex < this.products.length) {
-        this.startIndex++;
-        this.endIndex++;
-      }
-    }
-  }
-};
-</script>
-
-<style scoped>
-.product {
-  margin-top: 1050px;
-  position: relative; /* Додали позицію relative для родительського контейнера */
-}
-
-.product-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  margin-right: auto; /* Змінено правий відступ на auto */
-  margin-left: auto; /* Змінено лівий відступ на auto */
-  max-width: calc(1423px - 70px);
-  width: 100%;
-  height: 520px;
-  align-items: center;
-  justify-content: center; /* Додано центрування по горизонталі */
-  position: relative;
-}
-
-.product-card {
-  flex: 0 0 calc(25% - 30px);
-  margin-right: 30px;
-  max-height: 520px;
-  margin-bottom: auto; /* Додано, щоб картки були в центрі вертикально */
-}
-
-
-.pre-btn,
-.nxt-btn {
-  position: absolute;
-  top: 50%;
-  border: none;
-
+    </section>
+  </template>
   
-  cursor: pointer;
-  z-index: 8;
+  <script>
+  import left from "@/assets/slider/left.svg";
+  import right from "@/assets/slider/right.svg";
+  import left_hover from "@/assets/slider/left-hover.svg";
+  import right_hover from "@/assets/slider/right-hover.svg";
+  
+  import Petunia_Sophistica_F1 from "@/assets/slider/Petunia_Sophistica_F1.png";
+  import Petunia_Sophistica from "@/assets/slider/Petunia_Sophistica.png";
+  import speed_2 from "@/assets/slider/speed_2.png";
+  import speed from "@/assets/slider/speed.png";
+  import Xz from "@/assets/xz.svg";
+  import Xz_2 from "@/assets/xz_2.svg";
+  
+  import Shop from "@/components/index/Shop.vue";
+  
+  export default {
+    components: {
+      Shop,
+    },
+    data() {
+      return {
+        Xz,
+        Xz_2,
+        left,
+        right,
+        left_hover,
+        right_hover,
+        leftImage: left,
+        rightImage: right,
+        currentIndex: 0,
+        products: [
+          { id: 1, image: Petunia_Sophistica, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
+          { id: 2, image: speed, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 589, quantity: 1 },
+          { id: 3, image: speed_2, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 200, quantity: 1 },
+          { id: 4, image: Petunia_Sophistica_F1, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
+          { id: 5, image: Petunia_Sophistica, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
+          { id: 6, image: speed, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 589, quantity: 1 },
+          { id: 7, image: speed_2, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 200, quantity: 1 },
+        ],
+      };
+    },
+    computed: {
+      visibleProducts() {
+        return this.products.slice(this.currentIndex, this.currentIndex + 4);
+      },
+    },
+    methods: {
+      next() {
+        if (this.currentIndex + 4 < this.products.length) {
+          this.currentIndex++;
+        }
+      },
+      previous() {
+        if (this.currentIndex > 0) {
+          this.currentIndex--;
+        }
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .product {
+    margin-top: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8F8F8;
 
-}
-
-.pre-btn {
-  left: 80px; /* Змінено ліве відступ */
-}
-
-.nxt-btn {
-  right: 80px; /* Змінено праве відступ */
-}
-.pre-btn img,
-.nxt-btn img {
-  width: 90px; /* Збільшено ширину зображення */
-  height: 90px; /* Збільшено висоту зображення */
-}
-
-
-.pre-btn:hover,
-.nxt-btn:hover {
-  opacity: 1;
-}
-
-.pre-btn img,
-.nxt-btn img {
-  width: 20px;
-}
-
-
-
-.product-card:hover .card-btn {
-  opacity: 1;
-}
-
-.product-info {
-  width: 100%;
-  height: 100px;
-  padding-top: 10px;
-}
-
-.product-brand {
-  text-transform: uppercase;
-  font-weight: 600;
-font-size: 16px;
-color: #000;
-font-family: var(--font-family);
-}
-
-.product-short-description {
-  width: 100%;
-  height: 20px;
-  line-height: 20px;
-  overflow: hidden;
-  opacity: 0.5;
-
-  margin: 5px 0;
-}
-
-.price {
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.actual-price {
-  margin-left: 20px;
-  opacity: 0.5;
-  text-decoration: line-through;
-}
-
-@media (max-width: 992px) {
-  .product-card {
-    flex: 0 0 calc(33.33% - 30px);
   }
-}
-
-@media (max-width: 768px) {
-  .product-card {
-    flex: 0 0 calc(50% - 30px);
+  
+  :root {
+    --font-family: "Montserrat", sans-serif;
+    --second-family: "Roboto", sans-serif;
   }
-}
-
-@media (max-width: 576px) {
-  .product-card {
-    flex: 0 0 calc(100% - 30px);
+  
+  .product-title {
+    font-weight: 700;
+    font-size: 45px;
+    color: #000;
+    font-family: var(--font-family);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
   }
-}
-
-</style>
+  
+  .section-product {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .product-container {
+    border-radius: 20px;
+    width: 255px;
+    height: 355px;
+    background: #fff;
+    margin-top: -20px;
+  }
+  
+  .product-container-info {
+    margin-left: 10px;
+    margin-top: -15px;
+    border-radius: 20px;
+    width: 235px;
+    height: 150px;
+    background: rgba(140, 50, 19, 0.06);
+  }
+  
+  .product-container-img {
+    margin: 30px 79px;
+    width: 97px;
+    height: 132px;
+  }
+  
+  .product-container-info-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+    font-family: var(--font-family);
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+  }
+  
+  .product-container-info-In-stock {
+    font-weight: 400;
+    font-size: 14px;
+    color: #1e6140;
+    font-family: var(--font-family);
+    padding-top: 3px;
+    padding-left: 20px;
+    margin: 0;
+  }
+  
+  .product-container-info-In {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 0 20px;
+  }
+  
+  .price {
+    font-weight: 700;
+    font-size: 18px;
+    color: #84be51;
+    font-family: var(--font-family);
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+  
+  .number {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+    font-family: var(--font-family);
+    margin: 0;
+  }
+  
+  .btn-right,
+  .btn-left {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  </style>
+  

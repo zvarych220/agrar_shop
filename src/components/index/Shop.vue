@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Shop from '../assets/shop.svg';
-import Shop_hover from '../assets/shop-hover.svg';
+import Shop from '@/assets/shop.svg';
+import Shop_hover from '@/assets/shop-hover.svg';
 
 export default {
   data() {
