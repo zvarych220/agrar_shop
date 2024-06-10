@@ -6,7 +6,7 @@
         </button>
         <div class="product-list">
           <h2 class="product-title">
-            <img :src="Xz" alt="Xz" /> Новинки <img :src="Xz_2" alt="Xz_2" />
+            <img :src="Xz" alt="Xz" /> Акції <img :src="Xz_2" alt="Xz_2" />
           </h2>
           <div v-for="product in visibleProducts" :key="product.id" class="product-container">
             <img :src="product.image" alt="" class="product-container-img" />
@@ -46,7 +46,7 @@
   import speed from "@/assets/slider/speed.png";
   import Xz from "@/assets/xz.svg";
   import Xz_2 from "@/assets/xz_2.svg";
-  
+  import Bg from "@/assets/bg.png";
   import Shop from "@/components/index/Shop.vue";
   
   export default {
@@ -61,6 +61,7 @@
         right,
         left_hover,
         right_hover,
+        Bg,
         leftImage: left,
         rightImage: right,
         currentIndex: 0,
@@ -97,13 +98,15 @@
   
   <style scoped>
   .product {
-    margin-top: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F8F8F8;
+    background-image: url('@/assets/bg.png'); /* Додайте посилання на ваше зображення */
+    background-size: cover; /* Встановлює розмір фонового зображення */
+    background-position: center; /* Встановлює позицію фонового зображення */
     padding-bottom: 50px;
-  }
+}
+
   
   :root {
     --font-family: "Montserrat", sans-serif;
@@ -113,7 +116,7 @@
   .product-title {
     font-weight: 700;
     font-size: 45px;
-    color: #000;
+    color: #fff;
     font-family: var(--font-family);
     text-align: center;
     width: 100%;

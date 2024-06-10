@@ -1,6 +1,6 @@
 <template>
   <section class="index">
-    <img class="red-image" :src="Red" alt="Red overlay image">
+    
     <div class="agricultural-online">
       <div class="agricultural-online-store"></div>
       <div class="section">
@@ -57,7 +57,7 @@ export default {
 }
 
 .agricultural-online-store {
-  margin-top: -765px;
+  margin-top: -180px;
   height: 1000px;
   width: 1281px;
   background-image: url('@/assets/photo-index.png');

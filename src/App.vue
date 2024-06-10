@@ -4,8 +4,8 @@
     <Index />
     <about_us />
     <Novelty />
-    
-
+    <Novelty_2 />
+    <Seed />
   </div>
 
 </template>
@@ -14,16 +14,19 @@
 <script>
 
 import Menu from '@/components/Menu.vue';
-import Novelty from './components/index/Novelty.vue';
+import Novelty_2 from './components/index/novelty_2.vue';
+import Novelty from './components/index/novelty.vue';
 import Index from './components/index/index.vue';
 import about_us from './components/index/about_us.vue';
+import Seed from './components/index/Seed.vue';
 export default {
   components: {
     Menu,
     Novelty,
     Index,
     about_us,
-
+    Novelty_2,
+    Seed
 
   },
   data() {
