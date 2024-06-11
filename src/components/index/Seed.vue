@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 section{
-margin-top: -50px;
+
 }
 :root {
   --font-family: "Montserrat", sans-serif;
