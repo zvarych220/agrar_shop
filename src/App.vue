@@ -7,6 +7,7 @@
     <Novelty_2 />
     <Partners />
     <Seed />
+    <Footer />
   </div>
 
 </template>
@@ -21,6 +22,7 @@ import Index from './components/index/index.vue';
 import about_us from './components/index/about_us.vue';
 import Seed from './components/index/Seed.vue';
 import Partners from './components/index/partners.vue';
+import Footer from '@/components/footer.vue';
 export default {
   components: {
     Menu,
@@ -29,7 +31,8 @@ export default {
     about_us,
     Novelty_2,
     Seed,
-    Partners
+    Partners,
+    Footer
   },
   data() {
     return {

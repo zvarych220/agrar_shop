@@ -5,7 +5,7 @@
         <div class="menu-pole">
           <div class="menu-pole-link-about-us" id="app">
             <nav>
-              <i class="menu-pole-link-down" @click="show = !show">
+              <i class="menu-pole-link-down" @click="toggleMenu">
                 <a class="menu-pole-link" href="#">
                   Про нас <img :src="downArrow" class="menu-pole-img">
                 </a>
@@ -61,6 +61,7 @@
   </section>
 </template>
 
+
 <script>
 import downArrow from '../assets/down-arrow.png';
 import groupImage from '../assets/Group.svg';
@@ -98,11 +99,27 @@ export default {
       items: ['Наша команда', 'Партнери', 'Договір'],
     };
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    toggleMenu() {
+      this.show = !this.show;
+    },
+    handleScroll() {
+      if (this.show) {
+        this.show = false;
+      }
+    }
+  }
 };
 </script>
 
-<style scoped>
 
+<style scoped>
 .menu-login-href {
   align-items: center;
   display: flex;
@@ -297,3 +314,4 @@ main {
   width: 100%;
 }
 </style>
+

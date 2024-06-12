@@ -76,24 +76,18 @@ export default {
     displayedPartners() {
       // Show 5 partners at a time for the given design
       const partnersToShow = 5;
-      return this.partners.slice(this.currentIndex, this.currentIndex + partnersToShow);
+      // Ensure the list wraps around circularly
+      const extendedPartners = [...this.partners, ...this.partners];
+      const startIndex = this.currentIndex % this.partners.length;
+      return extendedPartners.slice(startIndex, startIndex + partnersToShow);
     }
   },
   methods: {
     next() {
-      const partnersToShow = 5;
-      if (this.currentIndex + partnersToShow < this.partners.length) {
-        this.currentIndex++;
-      } else {
-        this.currentIndex = 0; // Loop back to the start
-      }
+      this.currentIndex = (this.currentIndex + 1) % this.partners.length;
     },
     previous() {
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-      } else {
-        this.currentIndex = this.partners.length - 5; // Loop back to the end
-      }
+      this.currentIndex = (this.currentIndex - 1 + this.partners.length) % this.partners.length;
     }
   }
 };

@@ -47,6 +47,7 @@
     height: 40px;
     border: none;
     cursor: pointer;
+    padding: 0;
   }
   
   .phone-number-list {
