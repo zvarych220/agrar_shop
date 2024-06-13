@@ -120,6 +120,7 @@ export default {
   text-align: center;
   width: 100%;
   margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .section-product {

@@ -118,6 +118,7 @@ export default {
   text-align: center;
   width: 100%;
   margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .section-product {
@@ -211,16 +212,16 @@ export default {
   justify-content: center;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
-  position: absolute; /* Ensure buttons are positioned absolutely within the container */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact vertical centering */
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
 .btn-left {
-  left: 15px; /* Adjust as needed */
+  left: 15px; 
 }
 
 .btn-right {
-  right: 15px; /* Adjust as needed */
+  right: 15px; 
 }
 </style>

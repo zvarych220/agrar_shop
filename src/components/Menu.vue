@@ -18,7 +18,7 @@
             </nav>
           </div>
           <ul class="main-menu-links">
-            <li><a href="#" @click.prevent="navigateToCatalog" class="menu-pole-link">Каталог продукції</a></li>
+            <li><a href="#" class="menu-pole-link">Каталог продукції</a></li>
             <li><a href="#" class="menu-pole-link">Оплата і доставка</a></li>
             <li><a href="#" class="menu-pole-link">Партнери</a></li>
             <li><a href="#" class="menu-pole-link">Новини</a></li>
