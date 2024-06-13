@@ -50,9 +50,7 @@ export default {
 </script>
 
 <style scoped>
-section{
 
-}
 :root {
   --font-family: "Montserrat", sans-serif;
   --second-family: "Roboto", sans-serif;
@@ -63,9 +61,9 @@ section{
   margin-right: 425px;
 }
 .seed-container{
-  background-image: url(@/assets/bg_2.png); /* Змінено background-image на bg_2 */
-  background-size: cover; /* При необхідності налаштуйте розмір фонового зображення */
-  background-position: center; /* При необхідності налаштуйте позицію фонового зображення */
+  background-image: url(@/assets/bg_2.png); 
+  background-size: cover; 
+  background-position: center; 
 }
 .product-title {
  padding-top: 50px;

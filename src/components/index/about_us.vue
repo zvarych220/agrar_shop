@@ -41,6 +41,7 @@
 
 <script>
 
+import Xz from '@/assets/xz.svg';
 import Jugs from '@/assets/jugs.png';
 import Leaf_to_the_left from '@/assets/leaf_to_the_left.png';
 import Leaf_to_the_right from '@/assets/leaf_to_the_right.png';
@@ -56,6 +57,7 @@ export default {
       Jugs,
       Leaf_to_the_left,
       Leaf_to_the_right,
+      Xz,
     };
   }
 };
@@ -130,5 +132,10 @@ color: #1e6140;
 .about_us_text_container{
   width: 520px;
   font-family: var(--font-family);
+}
+
+.about_us_text-xz{
+  width: 32px;
+  height: 25px;
 }
 </style>

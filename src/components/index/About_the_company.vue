@@ -28,7 +28,7 @@ export default {
       this.currentImage = this.About_the_company;
     },
     handleClick() {
-      // Add your click handling logic here
+      
     }
   }
 };

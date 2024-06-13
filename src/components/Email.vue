@@ -47,7 +47,7 @@
   }
   
   button {
-    margin-right: 10px; /* Adjust the margin as needed */
+    margin-right: 10px;
     padding: 0;
     background-color: rgba(0, 0, 0, 0.0);
     border: none;

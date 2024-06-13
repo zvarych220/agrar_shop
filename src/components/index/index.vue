@@ -57,7 +57,7 @@ export default {
 }
 
 .agricultural-online-store {
-  margin-top: -180px;
+  margin-top: -420px;
   height: 1000px;
   width: 1281px;
   background-image: url('@/assets/photo-index.png');

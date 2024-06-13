@@ -70,7 +70,7 @@ export default {
 
 .footer-elements {
     margin-bottom: 118px;
-    margin-top: 120px;
+
     display: flex;
     justify-content: space-between;
     gap: 70px; /* Added gap property */

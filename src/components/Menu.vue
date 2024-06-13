@@ -18,7 +18,7 @@
             </nav>
           </div>
           <ul class="main-menu-links">
-            <li><a href="#" class="menu-pole-link">Каталог продукції</a></li>
+            <li><a href="#" @click.prevent="navigateToCatalog" class="menu-pole-link">Каталог продукції</a></li>
             <li><a href="#" class="menu-pole-link">Оплата і доставка</a></li>
             <li><a href="#" class="menu-pole-link">Партнери</a></li>
             <li><a href="#" class="menu-pole-link">Новини</a></li>
@@ -40,7 +40,7 @@
     <div class="section">
       <div class="menu-tools">
         <div class="menu-tools-first">
-          <img :src="logobrend" alt="" class="menu-tools-logo">
+          <img :src="logobrend" alt="" class="menu-tools-logo" @click="navigateToHome">
           <SearchPole />
           <div class="menu-tools-phone">
             <PhoneLogik />
@@ -60,7 +60,6 @@
     </div>
   </section>
 </template>
-
 
 <script>
 import downArrow from '../assets/down-arrow.png';
@@ -113,11 +112,16 @@ export default {
       if (this.show) {
         this.show = false;
       }
+    },
+    navigateToCatalog() {
+      this.$router.push({ name: 'Catalog' });
+    },
+    navigateToHome() {
+      this.$router.push({ name: 'Home' });
     }
   }
 };
 </script>
-
 
 <style scoped>
 .menu-login-href {
@@ -191,7 +195,6 @@ export default {
   text-align: center;
   white-space: nowrap; /* Запобігає перенесенню тексту на наступний рядок */
 }
-
 
 .sub-menu-links {
   display: flex;
@@ -290,7 +293,7 @@ main {
 }
 
 .menu-tools-first {
-  margin-top: 20px;
+  margin-top: -100px;
   display: flex;
   align-items: center;
 }
@@ -299,6 +302,7 @@ main {
   width: 158px;
   height: 71px;
   margin-left: 3px;
+  cursor: pointer;
 }
 
 .menu-tools-phone {
@@ -314,4 +318,3 @@ main {
   width: 100%;
 }
 </style>
-
