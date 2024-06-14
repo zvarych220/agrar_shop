@@ -127,15 +127,15 @@ margin-top: 40px;
   display: flex;
   align-items: center;
   gap: 20px;
-  position: relative; /* Ensure buttons are positioned relative to this container */
+  position: relative; 
 }
 
 .product-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .product-container {
@@ -214,16 +214,16 @@ margin-top: 40px;
   justify-content: center;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
-  position: absolute; /* Ensure buttons are positioned absolutely within the container */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact vertical centering */
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
 .btn-left {
-  left: 15px; /* Adjust as needed */
+  left: 15px;
 }
 
 .btn-right {
-  right: 15px; /* Adjust as needed */
+  right: 15px; 
 }
 </style>

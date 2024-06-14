@@ -28,7 +28,7 @@
         this.currentImage = this.Fertilizers;
       },
       handleClick() {
-        // Add your click handling logic here
+
       }
     }
   };

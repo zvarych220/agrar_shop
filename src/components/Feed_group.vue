@@ -28,7 +28,7 @@
         this.currentImage = this.feed_group;
       },
       handleClick() {
-        // Add your click handling logic here
+  
       }
     }
   };

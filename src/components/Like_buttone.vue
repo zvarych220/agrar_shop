@@ -28,7 +28,7 @@ export default {
       this.currentImage = this.likeButtonImage;
     },
     handleClick() {
-      // Add your click handling logic here
+ 
     }
   }
 };

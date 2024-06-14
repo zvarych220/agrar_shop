@@ -126,8 +126,8 @@ h1 {
   position: relative;
   margin-top: -390px;
   margin-left: 1110px;
-  width: 800px; /* Ensure the container has the same width as WorkMan */
-  height: 690px; /* Ensure the container has the same height as WorkMan */
+  width: 800px; 
+  height: 690px; 
 }
 
 .WorkMan {
@@ -141,15 +141,15 @@ h1 {
 
 .Two_leaves {
   position: absolute;
-  top: 60%; /* Adjust to desired position relative to WorkMan */
-  left: -150px; /* Adjust to desired position relative to WorkMan */
+  top: 60%; 
+  left: -150px; 
   z-index: 3;
 }
 
 .One_leaf {
   position: absolute;
-  top: -17%; /* Adjust to desired position relative to WorkMan */
-  right: 100px; /* Adjust to desired position relative to WorkMan */
+  top: -17%; 
+  right: 100px; 
   z-index: 3;
 }
 </style>

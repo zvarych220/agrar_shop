@@ -74,9 +74,7 @@ export default {
   },
   computed: {
     displayedPartners() {
-      // Show 5 partners at a time for the given design
       const partnersToShow = 5;
-      // Ensure the list wraps around circularly
       const extendedPartners = [...this.partners, ...this.partners];
       const startIndex = this.currentIndex % this.partners.length;
       return extendedPartners.slice(startIndex, startIndex + partnersToShow);

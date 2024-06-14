@@ -31,7 +31,7 @@
         this.currentImage = this.Email;
       },
       handleClick() {
-        // Add your click handling logic here
+       
       }
     }
   };

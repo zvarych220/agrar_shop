@@ -28,7 +28,7 @@
         this.currentImage = this.environment;
       },
       handleClick() {
-        // Add your click handling logic here
+  
       }
     }
   };

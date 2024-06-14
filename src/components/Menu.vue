@@ -193,7 +193,7 @@ export default {
  /* Зменшення відступів */
   flex: 1;
   text-align: center;
-  white-space: nowrap; /* Запобігає перенесенню тексту на наступний рядок */
+  white-space: nowrap; 
 }
 
 .sub-menu-links {

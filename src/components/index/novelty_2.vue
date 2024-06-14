@@ -126,15 +126,15 @@ export default {
   display: flex;
   align-items: center;
   gap: 20px;
-  position: relative; /* Ensure buttons are positioned relative to this container */
+  position: relative; 
 }
 
 .product-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .product-container {
@@ -213,16 +213,16 @@ export default {
   justify-content: center;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
-  position: absolute; /* Ensure buttons are positioned absolutely within the container */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact vertical centering */
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
 .btn-left {
-  left: -35px; /* Adjust to match the previous file */
+  left: -35px; 
 }
 
 .btn-right {
-  right: -35px; /* Adjust to match the previous file */
+  right: -35px; 
 }
 </style>

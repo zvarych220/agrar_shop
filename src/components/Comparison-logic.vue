@@ -28,7 +28,7 @@
         this.currentImage = this.comparisonImage;
       },
       handleClick() {
-        // Add your click handling logic here
+       
       }
     }
   };

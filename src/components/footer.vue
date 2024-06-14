@@ -73,7 +73,7 @@ export default {
 
     display: flex;
     justify-content: space-between;
-    gap: 70px; /* Added gap property */
+    gap: 70px; 
 }
 
 .logo_brend_img {

@@ -30,7 +30,7 @@
         this.currentImage = this.About_use_btn;
       },
       handleClick() {
-        // Add your click handling logic here
+        
       }
     }
   };

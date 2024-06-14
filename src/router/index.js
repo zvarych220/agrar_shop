@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../oll-pages/Home.vue'; // Компонент для головної сторінки
-import Catalog from '../oll-pages/Catalog.vue'; // Компонент для сторінки каталогу
+import Home from '../oll-pages/Home.vue'; 
+import Catalog from '../oll-pages/Catalog.vue'; 
 
 const routes = [
   {

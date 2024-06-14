@@ -28,7 +28,7 @@ export default {
       this.currentImage = this.Shop;
     },
     handleClick() {
-      // Add your click handling logic here
+
     }
   }
 };

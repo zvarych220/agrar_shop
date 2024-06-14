@@ -28,7 +28,7 @@
         this.currentImage = this.Help_the_agronomist;
       },
       handleClick() {
-        // Add your click handling logic here
+
       }
     }
   };
