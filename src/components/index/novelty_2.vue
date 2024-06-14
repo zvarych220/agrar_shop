@@ -35,18 +35,14 @@
 </template>
 
 <script>
+import axios from 'axios';
 import left from "@/assets/slider/left.svg";
 import right from "@/assets/slider/right.svg";
 import left_hover from "@/assets/slider/left-hover.svg";
 import right_hover from "@/assets/slider/right-hover.svg";
 
-import Petunia_Sophistica_F1 from "@/assets/slider/Petunia_Sophistica_F1.png";
-import Petunia_Sophistica from "@/assets/slider/Petunia_Sophistica.png";
-import speed_2 from "@/assets/slider/speed_2.png";
-import speed from "@/assets/slider/speed.png";
 import Xz from "@/assets/xz.svg";
 import Xz_2 from "@/assets/xz_2.svg";
-import Bg from "@/assets/bg.png";
 import Shop from "@/components/index/Shop.vue";
 
 export default {
@@ -61,19 +57,10 @@ export default {
       right,
       left_hover,
       right_hover,
-      Bg,
       leftImage: left,
       rightImage: right,
       currentIndex: 0,
-      products: [
-        { id: 1, image: Petunia_Sophistica, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
-        { id: 2, image: speed, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 589, quantity: 1 },
-        { id: 3, image: speed_2, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 200, quantity: 1 },
-        { id: 4, image: Petunia_Sophistica_F1, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
-        { id: 5, image: Petunia_Sophistica, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
-        { id: 6, image: speed, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 589, quantity: 1 },
-        { id: 7, image: speed_2, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 200, quantity: 1 },
-      ],
+      products: [],
     };
   },
   computed: {
@@ -92,6 +79,18 @@ export default {
         this.currentIndex--;
       }
     },
+    fetchProducts() {
+      axios.get('http://localhost/agrar_shop/Backend/fetch_action_goods.php')
+        .then(response => {
+          this.products = response.data;
+        })
+        .catch(error => {
+          console.error('Помилка отримання даних:', error);
+        });
+    }
+  },
+  mounted() {
+    this.fetchProducts();
   },
 };
 </script>
@@ -113,6 +112,7 @@ export default {
 }
 
 .product-title {
+  margin-top: 40px;
   font-weight: 700;
   font-size: 45px;
   color: #fff;
@@ -120,7 +120,6 @@ export default {
   text-align: center;
   width: 100%;
   margin-bottom: 40px;
-  margin-top: 40px;
 }
 
 .section-product {

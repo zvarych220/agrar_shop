@@ -35,15 +35,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import left from "@/assets/slider/left.svg";
 import right from "@/assets/slider/right.svg";
 import left_hover from "@/assets/slider/left-hover.svg";
 import right_hover from "@/assets/slider/right-hover.svg";
 
-import Petunia_Sophistica_F1 from "@/assets/slider/Petunia_Sophistica_F1.png";
-import Petunia_Sophistica from "@/assets/slider/Petunia_Sophistica.png";
-import speed_2 from "@/assets/slider/speed_2.png";
-import speed from "@/assets/slider/speed.png";
 import Xz from "@/assets/xz.svg";
 import Xz_2 from "@/assets/xz_2.svg";
 
@@ -64,15 +62,7 @@ export default {
       leftImage: left,
       rightImage: right,
       currentIndex: 0,
-      products: [
-        { id: 1, image: Petunia_Sophistica, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
-        { id: 2, image: speed, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 589, quantity: 1 },
-        { id: 3, image: speed_2, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 200, quantity: 1 },
-        { id: 4, image: Petunia_Sophistica_F1, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
-        { id: 5, image: Petunia_Sophistica, title: "Петунія Софістика F1", inStock: "В наявності", price: 20, quantity: 1 },
-        { id: 6, image: speed, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 589, quantity: 1 },
-        { id: 7, image: speed_2, title: "Скор 250 ЕС к.э.", inStock: "В наявності", price: 200, quantity: 1 },
-      ],
+      products: []
     };
   },
   computed: {
@@ -80,7 +70,19 @@ export default {
       return this.products.slice(this.currentIndex, this.currentIndex + 4);
     },
   },
+  created() {
+    this.fetchData();
+  },
   methods: {
+    fetchData() {
+      axios.get('http://localhost/agrar_shop/Backend/fetch_data.php')
+        .then(response => {
+          this.products = response.data;
+        })
+        .catch(error => {
+          console.error("Сталася помилка при отриманні даних!", error);
+        });
+    },
     next() {
       if (this.currentIndex + 4 < this.products.length) {
         this.currentIndex++;
@@ -111,6 +113,7 @@ export default {
 }
 
 .product-title {
+margin-top: 40px;
   font-weight: 700;
   font-size: 45px;
   color: #000;
@@ -118,7 +121,6 @@ export default {
   text-align: center;
   width: 100%;
   margin-bottom: 40px;
-  margin-top: 40px;
 }
 
 .section-product {
@@ -212,16 +214,16 @@ export default {
   justify-content: center;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
-  position: absolute; 
-  top: 50%; 
-  transform: translateY(-50%); 
+  position: absolute; /* Ensure buttons are positioned absolutely within the container */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for exact vertical centering */
 }
 
 .btn-left {
-  left: 15px; 
+  left: 15px; /* Adjust as needed */
 }
 
 .btn-right {
-  right: 15px; 
+  right: 15px; /* Adjust as needed */
 }
 </style>
