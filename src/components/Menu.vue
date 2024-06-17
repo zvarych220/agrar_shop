@@ -27,8 +27,8 @@
         </div>
         <div class="menu-login">
           <a href="#" class="menu-pole-login">
-            <div class="menu-login-href">
-              <img :src="groupImage" class="menu-pole-login-img" alt="">Вхід | Реєстрація
+            <div class="menu-login-href"  @click="navigateToRegister">
+              <img :src="groupImage" class="menu-pole-login-img" alt="" >Вхід | Реєстрація
             </div>
           </a>
         </div>
@@ -118,6 +118,9 @@ export default {
     },
     navigateToHome() {
       this.$router.push({ name: 'Home' });
+    },
+    navigateToRegister(){
+      this.$router.push({ name: 'Register'});
     }
   }
 };

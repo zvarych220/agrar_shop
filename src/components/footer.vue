@@ -62,11 +62,11 @@ export default {
     --font-family: "Montserrat", sans-serif;
     --second-family: "Roboto", sans-serif;
 }
-
-.section {
-    margin-left: 405px;
-    margin-right: 405px;
+.footer{
+    padding-top: 50px;
+    background-color: #fff;
 }
+
 
 .footer-elements {
     margin-bottom: 118px;
