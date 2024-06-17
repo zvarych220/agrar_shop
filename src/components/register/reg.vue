@@ -6,32 +6,38 @@
                     <img :src="Xz" alt="" class="xz"> Реєстрація <img :src="Xz_2" alt="" class="xz">
                 </h2>
             </div>
-            <p class="Reg_info_text">Увійдіть, щоб використовувати всі можливості особистого кабінету: відстеження замовлень, налаштування
-                    передплати, зв'язки з соціальними мережами та інші. Ми ніколи і за жодних умов не розголошуємо
-                    особисті дані клієнтів. Контактна інформація буде використана тільки для оформлення замовлень та
-                    зручнішої роботи з сайтом</p>
+            <p class="Reg_info_text">Увійдіть, щоб використовувати всі можливості особистого кабінету: відстеження
+                замовлень, налаштування
+                передплати, зв'язки з соціальними мережами та інші. Ми ніколи і за жодних умов не розголошуємо
+                особисті дані клієнтів. Контактна інформація буде використана тільки для оформлення замовлень та
+                зручнішої роботи з сайтом</p>
             <div class="registration-form">
                 <form @submit.prevent="register">
                     <div class="personal_info">
                         <div class="form-group">
-                            <input type="text" id="firstName" v-model="firstName" placeholder="Ім’я" required class="in_info"/>
+                            <input type="text" id="firstName" v-model="firstName" placeholder="Ім’я" required
+                                class="in_info" />
                         </div>
 
                         <div class="form-group">
-                            <input type="text" id="lastName" v-model="lastName" placeholder="Прізвище" required class="in_info" />
+                            <input type="text" id="lastName" v-model="lastName" placeholder="Прізвище" required
+                                class="in_info" />
                         </div>
                     </div>
                     <div class="personal_info">
                         <div class="form-group">
-                            <input type="tel" id="phone" v-model="phone" placeholder="Телефон" required class="in_info" />
+                            <input type="tel" id="phone" v-model="phone" placeholder="Телефон" required
+                                class="in_info" />
                         </div>
 
                         <div class="form-group">
-                            <input type="email" id="email" v-model="email" placeholder="E-mail" required class="in_info" />
+                            <input type="email" id="email" v-model="email" placeholder="E-mail" required
+                                class="in_info" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" v-model="password" placeholder="Пароль" required  class="in_info"/>
+                        <input type="password" id="password" v-model="password" placeholder="Пароль" required
+                            class="in_info" />
                     </div>
 
                     <div class="form-group">
@@ -40,11 +46,16 @@
                     </div>
                     <div class="form-group-label">
                         <label>
-                            <input type="checkbox" v-model="agreedToTerms" required class="checkbox"/>
+                            <input type="checkbox" v-model="agreedToTerms" required class="checkbox" />
                             Я згоден на обробку і захист<a href="" class="checkbox_link">персональних даних</a>
                         </label>
                     </div>
                     <button class="submit" type="submit">Зареєструватися</button>
+
+                    <div class="are_you_registered">
+                        <p class="login">Ви зареєстровані? Тоді <a href="" class="login_link"
+                                @click.prevent="navigateToLogin">ввійдіть в свій профіль</a></p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -72,36 +83,44 @@ export default {
     },
     methods: {
         register() {
-    if (this.password !== this.confirmPassword) {
-        alert("Паролі не співпадають");
-        return;
-    }
+            if (this.password !== this.confirmPassword) {
+                alert("Паролі не співпадають");
+                return;
+            }
 
-    const formData = new FormData();
-    formData.append('firstName', this.firstName);
-    formData.append('lastName', this.lastName);
-    formData.append('phone', this.phone);
-    formData.append('email', this.email);
-    formData.append('password', this.password);
-    formData.append('confirmPassword', this.confirmPassword);
-    formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
+            const formData = new FormData();
+            formData.append('firstName', this.firstName);
+            formData.append('lastName', this.lastName);
+            formData.append('phone', this.phone);
+            formData.append('email', this.email);
+            formData.append('password', this.password);
+            formData.append('confirmPassword', this.confirmPassword);
+            formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
 
-    axios.post('http://localhost/agrar_shop/Backend/register.php', formData)
-        .then(response => {
-            alert(response.data); // Вивести відповідь від сервера у вікні сповіщення
-            // Очистити поля форми після успішної реєстрації
-            this.firstName = '';
-            this.lastName = '';
-            this.phone = '';
-            this.email = '';
-            this.password = '';
-            this.confirmPassword = '';
-            this.agreedToTerms = false;
-        })
-        .catch(error => {
-            console.error("Під час виконання запиту виникла помилка:", error);
-        });
-}
+            axios.post('http://localhost/agrar_shop/Backend/register.php', formData)
+                .then(response => {
+                    alert(response.data.message); // Вивести відповідь від сервера у вікні сповіщення
+                    if (response.data.success) {
+                        // Очистити поля форми після успішної реєстрації
+                        this.firstName = '';
+                        this.lastName = '';
+                        this.phone = '';
+                        this.email = '';
+                        this.password = '';
+                        this.confirmPassword = '';
+                        this.agreedToTerms = false;
+                    }
+                })
+                .catch(error => {
+                    console.error("Під час виконання запиту виникла помилка:", error);
+                    alert("Під час виконання запиту виникла помилка: " + error.message);
+                });
+        },
+        
+        navigateToLogin() {
+            this.$router.push({ name: 'Login' });
+        }
+        
     }
 };
 </script>
@@ -158,7 +177,7 @@ export default {
     cursor: pointer;
     border-radius: 20px;
     width: 400px;
-    margin-bottom: 80px;
+
 }
 
 .submit:hover {
@@ -190,10 +209,21 @@ form label {
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-    
+
 }
-.checkbox_link{
+
+.checkbox_link {
     text-decoration: none;
     color: #84C551;
+}
+
+.login_link {
+    text-decoration: none;
+    color: #84C551;
+    margin-bottom: 80px;
+}
+
+.login {
+    text-align: center;
 }
 </style>

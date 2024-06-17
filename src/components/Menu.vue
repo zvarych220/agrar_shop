@@ -26,8 +26,8 @@
           </ul>
         </div>
         <div class="menu-login">
-          <a href="#" class="menu-pole-login">
-            <div class="menu-login-href"  @click="navigateToRegister">
+          <a href="#" class="menu-pole-login" >
+            <div class="menu-login-href" >
               <img :src="groupImage" class="menu-pole-login-img" alt="" >Вхід | Реєстрація
             </div>
           </a>
@@ -193,7 +193,6 @@ export default {
 }
 
 .main-menu-links li {
- /* Зменшення відступів */
   flex: 1;
   text-align: center;
   white-space: nowrap; 

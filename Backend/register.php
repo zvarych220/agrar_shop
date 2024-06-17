@@ -1,13 +1,11 @@
 <?php
 include 'db_connect.php';
 
-// Handle POST request
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, phone, email, password, agreed_to_terms) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssi", $first_name, $last_name, $phone, $email, $password_hash, $agreed_to_terms);
+$response = ['success' => false, 'message' => ''];
 
-    // Set parameters
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST['firstName'];
     $last_name = $_POST['lastName'];
     $phone = $_POST['phone'];
@@ -16,26 +14,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = $_POST['confirmPassword'];
     $agreed_to_terms = isset($_POST['agreedToTerms']) ? 1 : 0;
 
-    // Check if passwords match
     if ($password !== $confirm_password) {
-        echo "Паролі не співпадають";
+        $response['message'] = "Паролі не співпадають";
+        echo json_encode($response);
         exit();
     }
 
-    // Hash the password before storing
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // Execute the statement
-    if ($stmt->execute()) {
-        echo "Реєстрація успішна";
-    } else {
-        echo "Помилка: " . $stmt->error;
-    }
+    $sql = "SELECT * FROM users WHERE email = ? OR phone = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $email, $phone);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Close statement
-    $stmt->close();
+    if ($result->num_rows > 0) {
+        $response['message'] = "Користувач з таким email або телефоном вже існує.";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, phone, email, password, agreed_to_terms) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssi", $first_name, $last_name, $phone, $email, $password_hash, $agreed_to_terms);
+
+        if ($stmt->execute()) {
+            $response['success'] = true;
+            $response['message'] = "Реєстрація успішна";
+
+            // Set session for one day
+            $_SESSION['user_id'] = $stmt->insert_id;
+            $_SESSION['email'] = $email;
+            $_SESSION['start'] = time();
+            $_SESSION['expire'] = $_SESSION['start'] + (24 * 60 * 60);
+        } else {
+            $response['message'] = "Помилка: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
 } else {
-    // Handle non-POST request
-    echo "Дозволено тільки POST запити";
+    $response['message'] = "Дозволено тільки POST запити";
 }
+
+echo json_encode($response);
 ?>
