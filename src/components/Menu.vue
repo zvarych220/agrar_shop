@@ -18,7 +18,7 @@
             </nav>
           </div>
           <ul class="main-menu-links">
-            <li><a href="#"  class="menu-pole-link">Каталог продукції</a></li>
+            <li><a href="#" class="menu-pole-link">Каталог продукції</a></li>
             <li><a href="#" class="menu-pole-link">Оплата і доставка</a></li>
             <li><a href="#" class="menu-pole-link">Партнери</a></li>
             <li><a href="#" class="menu-pole-link">Новини</a></li>
@@ -26,9 +26,9 @@
           </ul>
         </div>
         <div class="menu-login">
-          <a href="#" class="menu-pole-login" >
-            <div class="menu-login-href" >
-              <img :src="groupImage" class="menu-pole-login-img" alt="" >Вхід | Реєстрація
+          <a href="#" class="menu-pole-login" @click="handleLoginClick">
+            <div class="menu-login-href">
+              <img :src="groupImage" class="menu-pole-login-img" alt="">{{ loginText }}
             </div>
           </a>
         </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="menu-tools-second">
           <Environment />
-          <Plants_protecting_tools /> 
+          <Plants_protecting_tools />
           <Fertilizers />
           <Feed_group />
           <Help_the_agronomist />
@@ -65,9 +65,9 @@
 import downArrow from '../assets/down-arrow.png';
 import groupImage from '../assets/Group.svg';
 import logobrend from '../assets/Logo-brend.svg';
-import PhoneLogik from './PhoneLogik.vue'; 
-import SearchPole from './Search_pole.vue'; 
-import LikeButtone from './Like_buttone.vue'; 
+import PhoneLogik from './PhoneLogik.vue';
+import SearchPole from './Search_pole.vue';
+import LikeButtone from './Like_buttone.vue';
 import Comparison from './Comparison-logic.vue';
 import Shop from './Shop.vue';
 import Environment from './Environment.vue';
@@ -78,7 +78,7 @@ import Help_the_agronomist from "./Help_the_agronomist.vue";
 
 export default {
   components: {
-    PhoneLogik, 
+    PhoneLogik,
     SearchPole,
     LikeButtone,
     Comparison,
@@ -96,10 +96,12 @@ export default {
       logobrend,
       show: false,
       items: ['Наша команда', 'Партнери', 'Договір'],
+      loginText: 'Вхід | Реєстрація'
     };
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    this.checkLoginStatus();
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -119,8 +121,24 @@ export default {
     navigateToHome() {
       this.$router.push({ name: 'Home' });
     },
-    navigateToRegister(){
-      this.$router.push({ name: 'Register'});
+    navigateToRegister() {
+      this.$router.push({ name: 'Register' });
+    },
+    handleLoginClick() {
+      if (this.loginText === 'Вхід | Реєстрація') {
+        this.navigateToRegister();
+      } else {
+        this.navigateToProfile();
+      }
+    },
+    navigateToProfile() {
+      this.$router.push({ name: 'Profile' });
+    },
+    checkLoginStatus() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.loginText = 'Профіль';
+      }
     }
   }
 };
@@ -195,7 +213,7 @@ export default {
 .main-menu-links li {
   flex: 1;
   text-align: center;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .sub-menu-links {

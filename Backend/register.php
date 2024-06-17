@@ -37,12 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             $response['success'] = true;
             $response['message'] = "Реєстрація успішна";
+            $userId = $stmt->insert_id;
 
-            // Set session for one day
-            $_SESSION['user_id'] = $stmt->insert_id;
-            $_SESSION['email'] = $email;
-            $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (24 * 60 * 60);
+            // Generate token
+            $token = bin2hex(random_bytes(16));
+            $_SESSION['token'] = $token;
+
+            $response['token'] = $token;
         } else {
             $response['message'] = "Помилка: " . $stmt->error;
         }

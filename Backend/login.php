@@ -1,3 +1,4 @@
+
 <?php
 include 'db_connect.php';
 
@@ -29,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['success'] = true;
             $response['message'] = 'Ви успішно увійшли!';
             
-            // Set session for one day
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (24 * 60 * 60);
+            // Generate token
+            $token = bin2hex(random_bytes(16));
+            $_SESSION['token'] = $token;
+
+            $response['token'] = $token;
         } else {
             $response['message'] = 'Невірний пароль.';
         }

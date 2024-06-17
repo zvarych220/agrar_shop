@@ -82,46 +82,54 @@ export default {
         };
     },
     methods: {
-        register() {
-            if (this.password !== this.confirmPassword) {
-                alert("Паролі не співпадають");
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append('firstName', this.firstName);
-            formData.append('lastName', this.lastName);
-            formData.append('phone', this.phone);
-            formData.append('email', this.email);
-            formData.append('password', this.password);
-            formData.append('confirmPassword', this.confirmPassword);
-            formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
-
-            axios.post('http://localhost/agrar_shop/Backend/register.php', formData)
-                .then(response => {
-                    alert(response.data.message); // Вивести відповідь від сервера у вікні сповіщення
-                    if (response.data.success) {
-                        // Очистити поля форми після успішної реєстрації
-                        this.firstName = '';
-                        this.lastName = '';
-                        this.phone = '';
-                        this.email = '';
-                        this.password = '';
-                        this.confirmPassword = '';
-                        this.agreedToTerms = false;
-                    }
-                })
-                .catch(error => {
-                    console.error("Під час виконання запиту виникла помилка:", error);
-                    alert("Під час виконання запиту виникла помилка: " + error.message);
-                });
-        },
-        
-        navigateToLogin() {
-            this.$router.push({ name: 'Login' });
+    register() {
+        if (this.password !== this.confirmPassword) {
+            alert("Паролі не співпадають");
+            return;
         }
-        
+
+        const formData = new FormData();
+        formData.append('firstName', this.firstName);
+        formData.append('lastName', this.lastName);
+        formData.append('phone', this.phone);
+        formData.append('email', this.email);
+        formData.append('password', this.password);
+        formData.append('confirmPassword', this.confirmPassword);
+        formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
+
+        axios.post('http://localhost/agrar_shop/Backend/register.php', formData)
+            .then(response => {
+                alert(response.data.message); // Показати повідомлення від сервера у сповіщенні
+                if (response.data.success) {
+                    // Зберегти токен у локальному сховищі
+                    localStorage.setItem('token', response.data.token);
+
+                    // Очистити поля форми після успішної реєстрації
+                    this.firstName = '';
+                    this.lastName = '';
+                    this.phone = '';
+                    this.email = '';
+                    this.password = '';
+                    this.confirmPassword = '';
+                    this.agreedToTerms = false;
+
+                    // Змінити текст кнопки на "Профіль"
+                    this.loginText = 'Профіль';
+
+                    // Перенаправити користувача на сторінку профілю
+                    this.$router.push({ name: 'Profile' });
+                }
+            })
+            .catch(error => {
+                console.error("Під час виконання запиту виникла помилка:", error);
+                alert("Під час виконання запиту виникла помилка: " + error.message);
+            });
+    },
+    navigateToLogin() {
+        this.$router.push({ name: 'Login' });
     }
+}
+
 };
 </script>
 
