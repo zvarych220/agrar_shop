@@ -50,36 +50,35 @@ export default {
         };
     },
     methods: {
-    login() {
-        const formData = new FormData();
-        formData.append('contact', this.contact);
-        formData.append('password', this.password);
-        formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
+        login() {
+            const formData = new FormData();
+            formData.append('contact', this.contact);
+            formData.append('password', this.password);
+            formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
 
-        axios.post('http://localhost/agrar_shop/Backend/login.php', formData)
-            .then(response => {
-                alert(response.data.message);
+            axios.post('http://localhost/agrar_shop/Backend/login.php', formData)
+                .then(response => {
+                    alert(response.data.message);
 
-                if (response.data.success) {
-                    // Зберегти токен у локальному сховищі
-                    localStorage.setItem('token', response.data.token);
+                    if (response.data.success) {
+                        localStorage.setItem('token', response.data.token);
+                        localStorage.setItem('loginTime', Date.now()); // Зберегти час входу
 
-                    this.contact = '';
-                    this.password = '';
-                    this.agreedToTerms = false;
+                        this.contact = '';
+                        this.password = '';
+                        this.agreedToTerms = false;
 
-                    // Перенаправити користувача на сторінку профілю або на іншу відповідно до потреб
-                    this.$router.push({ name: 'Profile' });
-                }
-            })
-            .catch(error => {
-                console.error("Під час виконання запиту виникла помилка:", error);
-            });
+                        this.$router.push({ name: 'Profile' });
+                    }
+                })
+                .catch(error => {
+                    console.error("Під час виконання запиту виникла помилка:", error);
+                });
+        }
     }
-}
-
 };
 </script>
+
 
 <style>
 .Log {

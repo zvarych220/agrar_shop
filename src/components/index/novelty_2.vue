@@ -19,8 +19,15 @@
             </p>
             <div class="product-container-info-In">
               <div class="product-container-info-detailing">
-                <p class="price">{{ product.price }} грн</p>
-                <p class="number">{{ product.quantity }} шт</p>
+                <p class="price">
+                  <span v-if="product.discount > 0" class="discounted-price">
+                    {{ calculateDiscountedPrice(product.price, product.discount) }} грн
+                  </span>
+                  <span v-else>
+                    {{ product.price }} грн
+                  </span>
+                </p>
+               
               </div>
               <Shop />
             </div>
@@ -87,7 +94,14 @@ export default {
         .catch(error => {
           console.error('Помилка отримання даних:', error);
         });
-    }
+    },
+    calculateDiscountedPrice(price, discount) {
+      if (discount > 0) {
+        return (price * (100 - discount) / 100).toFixed(2);
+      } else {
+        return price.toFixed(2);
+      }
+    },
   },
   mounted() {
     this.fetchProducts();
@@ -194,6 +208,11 @@ export default {
   font-family: var(--font-family);
   margin-bottom: 0;
   margin-top: 20px;
+}
+
+.discounted-price {
+  text-decoration: line-through;
+  color: #999;
 }
 
 .number {

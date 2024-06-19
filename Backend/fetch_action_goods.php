@@ -1,7 +1,7 @@
 <?php
 include 'db_connect.php';
 
-$sql = "SELECT id, title, image, inStock, price, quantity FROM goods WHERE action = 1"; // Вибираємо лише акційні товари
+$sql = "SELECT id, title, image, inStock, price, discount FROM goods WHERE action = 1"; // Вибираємо лише акційні товари
 $result = $conn->query($sql);
 
 $data = array();
