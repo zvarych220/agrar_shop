@@ -7,18 +7,7 @@
                 </h2>
             </div>
             <div class="profil_menu">
-                <div class="menu_profile">
-                    <ul class="sidebar-menu">
-                        <li class="menu-list" v-for="item in menuItems" :key="item.id">
-                            <a href="#" class="list-link" :class="{ active: item.active }"
-                                @mouseover="item.hover = true" @mouseleave="item.hover = false"
-                                @click.prevent="setActive(item)">
-                                <img :src="item.hover || item.active ? item.hoverImage : item.image" alt="">
-                                {{ item.text }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <menu_prof />
                 <div class="but_menu">
                    
                     <button class="menu-button">
@@ -57,7 +46,10 @@ import unlock from "@/assets/unlock.svg";
 import Xz from "@/assets/xz.svg";
 import Xz_2 from "@/assets/xz_2.svg";
 
+import menu_prof from "@/components/profile/comp_prof/menu_prof.vue";
+
 export default {
+    components: {menu_prof},
     data() {
         return {
             Xz,

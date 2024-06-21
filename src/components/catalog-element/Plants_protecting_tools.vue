@@ -1,41 +1,43 @@
 <template>
-    <section>
-        <div class="section">
-            <div class="Plants_protecting_tools">
-                <div class="Plants_protecting_tools-title">
-                    <h1 class="Plants-title">
-                        <img :src="Xz" alt="Xz" /> Засоби захисту рослин <img :src="Xz_2" alt="Xz_2" />
-                    </h1>
-                </div>
-                <div class="Plants_protecting_tools-categorii">
-                    <div class="Plants_protecting_tools-categorii-elemets girbiciudu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Гербіциди</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets fyngicudu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Фунгіциди</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets insectucudu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Інсектициди</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets desukantu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Десиканти</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets Protryuvach">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Протруювачі</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets Rodentrucudu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Родентицити</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets retandantu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Ретарданти</div>
-                    </div>
-                    <div class="Plants_protecting_tools-categorii-elemets Aduvantu">
-                        <div class="Plants_protecting_tools-categorii-elemets-title">Ад’юванти</div>
-                    </div>
-                </div>
-            </div>
+  <section>
+    <div class="section">
+      <div class="Plants_protecting_tools">
+        <div class="Plants_protecting_tools-title">
+          <h1 class="Plants-title">
+            <img :src="Xz" alt="Xz" /> Засоби захисту рослин <img :src="Xz_2" alt="Xz_2" />
+          </h1>
         </div>
-    </section>
+        <div class="Plants_protecting_tools-categorii">
+          <div class="Plants_protecting_tools-categorii-elemets girbicidu" @click="navigateToGoods('/gerbicidu')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Гербіциди</div>
+          </div>
+          <div class="Plants_protecting_tools-categorii-elemets fyngicudu" @click="navigateToGoods('/fyngicidu')">
+  <div class="Plants_protecting_tools-categorii-elemets-title">Фунгіциди</div>
+</div>
+
+
+          <div class="Plants_protecting_tools-categorii-elemets insecticidu" @click="navigateToGoods('/insecticidu')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Інсектициди</div>
+          </div>
+          <div class="Plants_protecting_tools-categorii-elemets desicantu" @click="navigateToGoods('/desicantu')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Десиканти</div>
+          </div>
+          <div class="Plants_protecting_tools-categorii-elemets Protryuvach" @click="navigateToGoods('/protryuvach')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Протруювачі</div>
+          </div>
+          <div class="Plants_protecting_tools-categorii-elemets Rodentrucudu" @click="navigateToGoods('/rodenticidu')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Родентицити</div>
+          </div>
+          <div class="Plants_protecting_tools-categorii-elemets retandantu" @click="navigateToGoods('/retandantu')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Ретарданти</div>
+          </div>
+          <div class="Plants_protecting_tools-categorii-elemets Aduvantu" @click="navigateToGoods('/aduvantu')">
+            <div class="Plants_protecting_tools-categorii-elemets-title">Ад’юванти</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -43,15 +45,24 @@ import Xz from "@/assets/xz.svg";
 import Xz_2 from "@/assets/xz_2.svg";
 
 export default {
-    data() {
-        return {
-            Xz,
-            Xz_2,
-        };
-    },
+  data() {
+    return {
+      Xz,
+      Xz_2,
+    };
+  },
+  methods: {
+    navigateToGoods(route) {
+      // Redirect to specified route
+      this.$router.push(route).catch(err => {
+        if (err.name !== 'NavigationDuplicated') {
+          console.error(err);
+        }
+      });
+    }
+  }
 };
 </script>
-
 <style>
 .section {
     margin-left: 405px;
@@ -110,6 +121,7 @@ export default {
     justify-content: center;
     align-items: flex-end;
     transition: transform 0.3s ease;
+    cursor: pointer; /* Add cursor pointer */
 }
 
 .Plants_protecting_tools-categorii-elemets:hover {
@@ -164,6 +176,5 @@ export default {
     font-weight: 600;
     font-size: 22px;
     font-family: var(--font-family);
-
 }
 </style>
