@@ -125,22 +125,37 @@ export default {
       this.$router.push({ name: 'Register' });
     },
     handleLoginClick() {
+      const role = localStorage.getItem('role');
       if (this.loginText === 'Вхід | Реєстрація') {
         this.navigateToRegister();
       } else {
-        this.navigateToProfile();
+        if (role === '1') {
+          this.navigateToProfileAdmin();
+        } else {
+          this.navigateToProfile();
+        }
       }
     },
     navigateToProfile() {
       this.$router.push({ name: 'Profile' });
     },
+    navigateToProfileAdmin() {
+      this.$router.push({ name: 'ProfileAdmin' });
+    },
     checkLoginStatus() {
       const token = localStorage.getItem('token');
+      const role = localStorage.getItem('role');
       if (token) {
         this.loginText = 'Профіль';
+        if (role === '1') {
+          this.$router.push({ name: 'ProfileAdmin' });
+        } else {
+          this.$router.push({ name: 'Profile' });
+        }
       }
     }
-  }
+}
+
 };
 </script>
 
@@ -269,7 +284,7 @@ i {
   font-weight: 300;
   font-size: 16px;
   color: #fff;
-  font-family: var(--font-family);
+  font-family: var (--font-family);
   text-decoration: none;
   margin-top: 1px;
   padding: 10px 0;

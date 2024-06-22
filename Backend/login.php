@@ -1,4 +1,3 @@
-
 <?php
 include 'db_connect.php';
 
@@ -35,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['token'] = $token;
 
             $response['token'] = $token;
+            $response['role_id'] = $user['role_id']; // Додаємо role_id до відповіді
         } else {
             $response['message'] = 'Невірний пароль.';
         }

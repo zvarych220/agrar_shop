@@ -4,6 +4,8 @@ import Catalog from '../oll-pages/Catalog.vue';
 import Register from '../oll-pages/Register.vue';
 import Login from '../oll-pages/Login.vue';
 import Profile from '../oll-pages/Profile.vue';
+import ProfileAdmin from '../oll-pages/Admin.vue';
+
 
 import Aduvantu from '@/components/goods/Aduvantu.vue';
 import Retandantu from '@/components/goods/Retandantu.vue';
@@ -28,6 +30,7 @@ const routes = [
   { path: '/adjuvantu', name: 'Aduvantu', component: Aduvantu },
   { path: '/rodenticidu', name: 'Rodenticidu', component: Rodenticidu },
   { path: '/retardantu', name: 'Retandantu', component: Retandantu },
+  { path: '/admin', name: 'ProfileAdmin', component: ProfileAdmin },
 ];
 
 const router = createRouter({

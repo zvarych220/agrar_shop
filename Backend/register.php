@@ -31,8 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $response['message'] = "Користувач з таким email або телефоном вже існує.";
     } else {
-        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, phone, email, password, agreed_to_terms) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssi", $first_name, $last_name, $phone, $email, $password_hash, $agreed_to_terms);
+        $role_id = 2; // Роль простого користувача
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, phone, email, password, agreed_to_terms, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssis", $first_name, $last_name, $phone, $email, $password_hash, $agreed_to_terms, $role_id);
 
         if ($stmt->execute()) {
             $response['success'] = true;
