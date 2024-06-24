@@ -12,7 +12,7 @@ export default {
     checkSession() {
       const token = localStorage.getItem('token');
       const loginTime = localStorage.getItem('loginTime');
-      const maxSessionTime = 36000; // 1 година в мілісекундах
+      const maxSessionTime = 3600000; // 1 година в мілісекундах
 
       if (token && loginTime) {
         const currentTime = Date.now();

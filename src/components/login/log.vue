@@ -36,54 +36,50 @@
 
 <script>
 import axios from 'axios';
-import Xz from "@/assets/xz.svg";
-import Xz_2 from "@/assets/xz_2.svg";
 
 export default {
-    data() {
-        return {
-            Xz,
-            Xz_2,
-            contact: '',
-            password: '',
-            agreedToTerms: false
-        };
-    },
-    methods: {
-        login() {
-            const formData = new FormData();
-            formData.append('contact', this.contact);
-            formData.append('password', this.password);
-            formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
+  data() {
+    return {
+      contact: '',
+      password: '',
+      agreedToTerms: false
+    };
+  },
+  methods: {
+    login() {
+      const formData = new FormData();
+      formData.append('contact', this.contact);
+      formData.append('password', this.password);
+      formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
 
-            axios.post('http://localhost/agrar_shop/Backend/login.php', formData)
-                .then(response => {
-                    alert(response.data.message);
+      axios.post('http://localhost/agrar_shop/Backend/login.php', formData)
+        .then(response => {
+          alert(response.data.message);
 
-                    if (response.data.success) {
-                        localStorage.setItem('token', response.data.token);
-                        localStorage.setItem('role', response.data.role_id); // Зберігаємо role_id
-                        localStorage.setItem('loginTime', Date.now()); // Зберегти час входу
+          if (response.data.success) {
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('role', response.data.role_id);
+            localStorage.setItem('loginTime', Date.now());
 
-                        this.contact = '';
-                        this.password = '';
-                        this.agreedToTerms = false;
+            this.contact = '';
+            this.password = '';
+            this.agreedToTerms = false;
 
-                        // Перевірка role_id та перенаправлення
-                        if (response.data.role_id === 1) {
-                            this.$router.push({ name: 'ProfileAdmin' });
-                        } else if (response.data.role_id === 2) {
-                            this.$router.push({ name: 'Profile' });
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error("Під час виконання запиту виникла помилка:", error);
-                });
-        }
+            if (response.data.role_id === 1) {
+              this.$router.push({ name: 'ProfileAdmin' });
+            } else {
+              this.$router.push({ name: 'Profile' });
+            }
+          }
+        })
+        .catch(error => {
+          console.error("Під час виконання запиту виникла помилка:", error);
+        });
     }
+  }
 };
 </script>
+
 
 
 

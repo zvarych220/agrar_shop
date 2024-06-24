@@ -18,7 +18,7 @@
             </nav>
           </div>
           <ul class="main-menu-links">
-            <li><a href="#" class="menu-pole-link">Каталог продукції</a></li>
+            <li><a @click.prevent="navigateToCatalog" class="menu-pole-link">Каталог продукції</a></li>
             <li><a href="#" class="menu-pole-link">Оплата і доставка</a></li>
             <li><a href="#" class="menu-pole-link">Партнери</a></li>
             <li><a href="#" class="menu-pole-link">Новини</a></li>
@@ -147,15 +147,10 @@ export default {
       const role = localStorage.getItem('role');
       if (token) {
         this.loginText = 'Профіль';
-        if (role === '1') {
-          this.$router.push({ name: 'ProfileAdmin' });
-        } else {
-          this.$router.push({ name: 'Profile' });
-        }
+        // Не робимо перенаправлення у методі checkLoginStatus
       }
     }
-}
-
+  }
 };
 </script>
 
@@ -284,7 +279,7 @@ i {
   font-weight: 300;
   font-size: 16px;
   color: #fff;
-  font-family: var (--font-family);
+  font-family: var(--font-family);
   text-decoration: none;
   margin-top: 1px;
   padding: 10px 0;

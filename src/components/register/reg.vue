@@ -64,70 +64,66 @@
 
 <script>
 import axios from 'axios';
-import Xz from "@/assets/xz.svg";
-import Xz_2 from "@/assets/xz_2.svg";
 
 export default {
-    data() {
-        return {
-            Xz,
-            Xz_2,
-            firstName: '',
-            lastName: '',
-            phone: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            agreedToTerms: false
-        };
-    },
-    methods: {
-        register() {
-            if (this.password !== this.confirmPassword) {
-                alert("Паролі не співпадають");
-                return;
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      agreedToTerms: false
+    };
+  },
+  methods: {
+    register() {
+      if (this.password !== this.confirmPassword) {
+        alert("Паролі не співпадають");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('firstName', this.firstName);
+      formData.append('lastName', this.lastName);
+      formData.append('phone', this.phone);
+      formData.append('email', this.email);
+      formData.append('password', this.password);
+      formData.append('confirmPassword', this.confirmPassword);
+      formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
+
+      axios.post('http://localhost/agrar_shop/Backend/register.php', formData)
+        .then(response => {
+          alert(response.data.message); 
+          if (response.data.success) {
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('role', response.data.role_id);
+            localStorage.setItem('loginTime', Date.now());
+
+            this.firstName = '';
+            this.lastName = '';
+            this.phone = '';
+            this.email = '';
+            this.password = '';
+            this.confirmPassword = '';
+            this.agreedToTerms = false;
+
+            if (response.data.role_id === 1) {
+              this.$router.push({ name: 'ProfileAdmin' });
+            } else {
+              this.$router.push({ name: 'Profile' });
             }
-
-            const formData = new FormData();
-            formData.append('firstName', this.firstName);
-            formData.append('lastName', this.lastName);
-            formData.append('phone', this.phone);
-            formData.append('email', this.email);
-            formData.append('password', this.password);
-            formData.append('confirmPassword', this.confirmPassword);
-            formData.append('agreedToTerms', this.agreedToTerms ? 1 : 0);
-
-            axios.post('http://localhost/agrar_shop/Backend/register.php', formData)
-                .then(response => {
-                    alert(response.data.message); 
-                    if (response.data.success) {
-                        localStorage.setItem('token', response.data.token);
-                        localStorage.setItem('loginTime', Date.now()); // Зберегти час входу
-
-                        this.firstName = '';
-                        this.lastName = '';
-                        this.phone = '';
-                        this.email = '';
-                        this.password = '';
-                        this.confirmPassword = '';
-                        this.agreedToTerms = false;
-
-                        this.loginText = 'Профіль';
-                        this.$router.push({ name: 'Profile' });
-                    }
-                })
-                .catch(error => {
-                    console.error("Під час виконання запиту виникла помилка:", error);
-                    alert("Під час виконання запиту виникла помилка: " + error.message);
-                });
-        },
-        navigateToLogin() {
-            this.$router.push({ name: 'Login' });
-        }
+          }
+        })
+        .catch(error => {
+          console.error("Під час виконання запиту виникла помилка:", error);
+          alert("Під час виконання запиту виникла помилка: " + error.message);
+        });
     }
+  }
 };
 </script>
-
 
 <style>
 .Reg {

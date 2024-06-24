@@ -12,10 +12,8 @@
             <div class="Plants_protecting_tools-categorii-elemets-title">Гербіциди</div>
           </div>
           <div class="Plants_protecting_tools-categorii-elemets fyngicudu" @click="navigateToGoods('/fyngicidu')">
-  <div class="Plants_protecting_tools-categorii-elemets-title">Фунгіциди</div>
-</div>
-
-
+            <div class="Plants_protecting_tools-categorii-elemets-title">Фунгіциди</div>
+          </div>
           <div class="Plants_protecting_tools-categorii-elemets insecticidu" @click="navigateToGoods('/insecticidu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Інсектициди</div>
           </div>
@@ -53,7 +51,6 @@ export default {
   },
   methods: {
     navigateToGoods(route) {
-      // Redirect to specified route
       this.$router.push(route).catch(err => {
         if (err.name !== 'NavigationDuplicated') {
           console.error(err);
@@ -63,6 +60,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .section {
     margin-left: 405px;
@@ -121,26 +119,27 @@ export default {
     justify-content: center;
     align-items: flex-end;
     transition: transform 0.3s ease;
-    cursor: pointer; /* Add cursor pointer */
+    cursor: pointer;
 }
 
 .Plants_protecting_tools-categorii-elemets:hover {
     transform: scale(1.1);
 }
 
-.Plants_protecting_tools-categorii-elemets.girbiciudu {
+.Plants_protecting_tools-categorii-elemets.girbicidu {
     background-image: url('@/assets/gerbicudu.png');
 }
+
 
 .Plants_protecting_tools-categorii-elemets.fyngicudu {
     background-image: url('@/assets/fyngicudu.png');
 }
 
-.Plants_protecting_tools-categorii-elemets.insectucudu {
+.Plants_protecting_tools-categorii-elemets.insecticidu {
     background-image: url('@/assets/insectucudu.png');
 }
 
-.Plants_protecting_tools-categorii-elemets.desukantu {
+.Plants_protecting_tools-categorii-elemets.desicantu {
     background-image: url('@/assets/desukantu.png');
 }
 

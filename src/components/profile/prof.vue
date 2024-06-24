@@ -59,48 +59,7 @@ export default {
             unlock,
             personal_information,
 
-            menuItems: [
-                {
-                    id: 1,
-                    text: "Mій кабінет",
-                    image: personal_information,
-                    hoverImage:personal_information_hover ,
-                    hover: false,
-                    active: false,
-                },
-                {
-                    id: 2,
-                    text: "Поточні замовлення",
-                    image: order,
-                    hoverImage: order_hover,
-                    hover: false,
-                    active: false,
-                },
-                {
-                    id: 3,
-                    text: "Особисті дані",
-                    image: personal_information,
-                    hoverImage: personal_information_hover,
-                    hover: false,
-                    active: false,
-                },
-                {
-                    id: 4,
-                    text: "Змінити пароль",
-                    image: unlock,
-                    hoverImage: unlock_hover,
-                    hover: false,
-                    active: false,
-                },
-                {
-                    id: 5,
-                    text: "Історія замовлень",
-                    image: history,
-                    hoverImage: history_hover,
-                    hover: false,
-                    active: false,
-                },
-            ],
+           
         };
     },
     methods: {
