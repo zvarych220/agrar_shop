@@ -11,7 +11,7 @@
           <div class="Plants_protecting_tools-categorii-elemets girbicidu" @click="navigateToGoods('/gerbicidu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Гербіциди</div>
           </div>
-          <div class="Plants_protecting_tools-categorii-elemets fyngicudu" @click="navigateToGoods('/fyngicidu')">
+          <div class="Plants_protecting_tools-categorii-elemets fyngicudu" @click="navigateToGoods('/fungicidu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Фунгіциди</div>
           </div>
           <div class="Plants_protecting_tools-categorii-elemets insecticidu" @click="navigateToGoods('/insecticidu')">
@@ -20,16 +20,16 @@
           <div class="Plants_protecting_tools-categorii-elemets desicantu" @click="navigateToGoods('/desicantu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Десиканти</div>
           </div>
-          <div class="Plants_protecting_tools-categorii-elemets Protryuvach" @click="navigateToGoods('/protryuvach')">
+          <div class="Plants_protecting_tools-categorii-elemets Protryuvach" @click="navigateToGoods('/protruvach')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Протруювачі</div>
           </div>
           <div class="Plants_protecting_tools-categorii-elemets Rodentrucudu" @click="navigateToGoods('/rodenticidu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Родентицити</div>
           </div>
-          <div class="Plants_protecting_tools-categorii-elemets retandantu" @click="navigateToGoods('/retandantu')">
+          <div class="Plants_protecting_tools-categorii-elemets retandantu" @click="navigateToGoods('/retardantu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Ретарданти</div>
           </div>
-          <div class="Plants_protecting_tools-categorii-elemets Aduvantu" @click="navigateToGoods('/aduvantu')">
+          <div class="Plants_protecting_tools-categorii-elemets Aduvantu" @click="navigateToGoods('/adjuvantu')">
             <div class="Plants_protecting_tools-categorii-elemets-title">Ад’юванти</div>
           </div>
         </div>

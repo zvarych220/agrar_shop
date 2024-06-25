@@ -15,7 +15,7 @@ import Gerbicidu from '@/components/goods/Gerbicudu.vue';
 import Fyngicidu from '@/components/goods/Fyngicudu.vue';
 import Desicantu from '@/components/goods/Desukantu.vue';
 import Add_goods from '@/components/profil_admin/pages_admin/add_goods.vue';
-
+import Add_admin from '@/components/profil_admin/pages_admin/add_admin.vue';
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/catalog', name: 'Catalog', component: Catalog },
@@ -32,6 +32,7 @@ const routes = [
   { path: '/rodenticidu', name: 'Rodenticidu', component: Rodenticidu },
   { path: '/retardantu', name: 'Retandantu', component: Retandantu },
   { path: '/add_goods', name: 'Add_goods', component: Add_goods, meta: { requiresAuth: true } },
+  { path: '/add_admin', name: 'Add_admin', component: Add_admin },
 ];
 
 const router = createRouter({

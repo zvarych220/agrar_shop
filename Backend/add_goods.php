@@ -17,7 +17,7 @@ try {
         $action = $_POST['action'];
         $inStock = 1; // Встановлюємо значення за замовчуванням для поля inStock
 
-        $target_dir = "uploads/";
+        $target_dir = "../src/assets/slider/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -60,15 +60,15 @@ try {
         }
 
         // Вставка нового товару в базу даних
-        $sql = "INSERT INTO goods (title, image, price, action, type_id, inStock, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $relative_file_path = 'src/assets/slider/' . basename($_FILES["image"]["name"]);
+        $sql = "INSERT INTO goods (title, image, price, action, type_id, inStock) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         if ($stmt === false) {
             respond(false, 'Prepare failed: ' . htmlspecialchars($conn->error));
         }
-        $image = basename($_FILES["image"]["name"]); // Отримуємо назву файлу
-        $stmt->bind_param("ssdiiis", $title, $image, $price, $action, $type_id, $inStock, $target_file);
+        $stmt->bind_param("ssdiii", $title, $relative_file_path, $price, $action, $type_id, $inStock);
         if ($stmt->execute()) {
-            respond(true, $target_file);
+            respond(true, $relative_file_path);
         } else {
             respond(false, 'Execute failed: ' . htmlspecialchars($stmt->error));
         }

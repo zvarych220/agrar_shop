@@ -78,6 +78,9 @@ export default {
     };
   },
   methods: {
+    navigateToLogin() {
+      this.$router.push({ name: 'Login' });
+    },
     register() {
       if (this.password !== this.confirmPassword) {
         alert("Паролі не співпадають");

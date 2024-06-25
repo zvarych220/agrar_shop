@@ -63,6 +63,9 @@ export default {
             else if (selectedItem.id === 3){
                 this.addgoods();
             }
+            else if (selectedItem.id === 4){
+                this.addadmin();
+            }
             
         },
         logout() {
@@ -75,6 +78,9 @@ export default {
         },
         addgoods(){
             window.location.href = "/add_goods";
+        },
+        addadmin(){
+            window.location.href = "/add_admin";
         }
     },
 };
