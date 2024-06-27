@@ -5,6 +5,7 @@ import Register from '../oll-pages/Register.vue';
 import Login from '../oll-pages/Login.vue';
 import Profile from '../oll-pages/Profile.vue';
 import ProfileAdmin from '../oll-pages/Admin.vue';
+import Shopping_cart from '../oll-pages/Shopping-cart.vue';
 
 import Aduvantu from '@/components/goods/Aduvantu.vue';
 import Retandantu from '@/components/goods/Retandantu.vue';
@@ -16,6 +17,7 @@ import Fyngicidu from '@/components/goods/Fyngicudu.vue';
 import Desicantu from '@/components/goods/Desukantu.vue';
 import Add_goods from '@/components/profil_admin/pages_admin/add_goods.vue';
 import Add_admin from '@/components/profil_admin/pages_admin/add_admin.vue';
+
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/catalog', name: 'Catalog', component: Catalog },
@@ -33,6 +35,7 @@ const routes = [
   { path: '/retardantu', name: 'Retandantu', component: Retandantu },
   { path: '/add_goods', name: 'Add_goods', component: Add_goods, meta: { requiresAuth: true } },
   { path: '/add_admin', name: 'Add_admin', component: Add_admin },
+  { path: '/shopping_cart', name: 'Shopping_cart', component: Shopping_cart, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({
@@ -43,12 +46,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
   const loginTime = localStorage.getItem('loginTime');
-  const maxSessionTime = 3600000; // 1 година в мілісекундах
+  const maxSessionTime = 3600000; // 1 hour in milliseconds
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (token && loginTime) {
       const currentTime = Date.now();
-      if (currentTime - loginTime > maxSessionTime) {
+      if (currentTime - parseInt(loginTime, 10) > maxSessionTime) {
         localStorage.removeItem('token');
         localStorage.removeItem('loginTime');
         next({ name: 'Login' });

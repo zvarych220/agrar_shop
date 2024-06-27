@@ -36,10 +36,15 @@
 
 <script>
 import axios from 'axios';
-
+import Xz from "@/assets/xz.svg";
+import Xz_2 from "@/assets/xz_2.svg";
 export default {
   data() {
+    
+    
     return {
+        Xz_2,
+    Xz,
       contact: '',
       password: '',
       agreedToTerms: false

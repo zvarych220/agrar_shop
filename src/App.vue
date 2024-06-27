@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -11,6 +13,7 @@ export default {
   methods: {
     checkSession() {
       const token = localStorage.getItem('token');
+      console.log('Current token:', token); // Додано вивід токену в консоль
       const loginTime = localStorage.getItem('loginTime');
       const maxSessionTime = 3600000; // 1 година в мілісекундах
 

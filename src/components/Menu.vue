@@ -69,7 +69,7 @@ import PhoneLogik from './PhoneLogik.vue';
 import SearchPole from './Search_pole.vue';
 import LikeButtone from './Like_buttone.vue';
 import Comparison from './Comparison-logic.vue';
-import Shop from './Shop.vue';
+import Shop from './basket.vue';
 import Environment from './Environment.vue';
 import Plants_protecting_tools from './Plants_protecting_tools.vue';
 import Fertilizers from "./Fertilizers.vue";

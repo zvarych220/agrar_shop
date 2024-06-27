@@ -1,31 +1,40 @@
 <template>
-  <button @click="handleClick" class="shop-button">
-    <img :src="currentImage" alt="Shop button" />
+  <button 
+    @mouseover="handleMouseOver" 
+    @mouseout="handleMouseOut"
+    @click="handleClick"
+  >
+    <img :src="currentImage" alt="basket button" />
   </button>
 </template>
 
 <script>
-import Shop from '@/assets/shop.svg';
-import ShopHover from '@/assets/shop-hover.svg';
+import Shop from '../assets/shop.svg';
+import Shop_hover from '../assets/shop-hover.svg';
 
 export default {
   data() {
     return {
       Shop,
-      ShopHover,
+      Shop_hover,
       currentImage: Shop
     };
   },
   methods: {
+    handleMouseOver() {
+      this.currentImage = this.Shop_hover;
+    },
+    handleMouseOut() {
+      this.currentImage = this.Shop;
+    },
     handleClick() {
-      this.$emit('shopClicked');
     }
   }
 };
 </script>
 
 <style scoped>
-.shop-button {
+button {
   margin-left: 15px;
   margin-top: 13px;
   padding: 0;

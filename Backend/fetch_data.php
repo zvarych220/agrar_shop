@@ -2,7 +2,7 @@
 include 'db_connect.php';
 
 // Fetch all products from the database
-$sql = "SELECT id, title, image, inStock, price FROM goods"; // видалено 'quantity' з SELECT
+$sql = "SELECT id, title, image, inStock, price FROM goods"; 
 $result = $conn->query($sql);
 
 $data = array();

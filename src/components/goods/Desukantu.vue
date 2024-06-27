@@ -119,7 +119,7 @@
   .product-list {
     z-index: 5; /* Зменште значення з-index для product-list, якщо filter все ще перекривається */
     position: relative; /* Можливо, встановіть position: relative; */
-    margin-top: -520px;
+    margin-top: -90px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
