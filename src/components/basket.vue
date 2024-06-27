@@ -1,11 +1,13 @@
 <template>
-  <button 
-    @mouseover="handleMouseOver" 
-    @mouseout="handleMouseOut"
-    @click="handleClick"
-  >
-    <img :src="currentImage" alt="basket button" />
-  </button>
+  <router-link to="/shopping_cart">
+    <button 
+      @mouseover="handleMouseOver" 
+      @mouseout="handleMouseOut"
+      @click="handleClick"
+    >
+      <img :src="currentImage" alt="basket button" />
+    </button>
+  </router-link>
 </template>
 
 <script>
@@ -28,6 +30,7 @@ export default {
       this.currentImage = this.Shop;
     },
     handleClick() {
+      // Optional: Handle any click actions here if needed
     }
   }
 };

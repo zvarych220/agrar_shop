@@ -3,8 +3,8 @@
     <Menu />
     <div class="prod_viev">
       <div class="filter">
-      <FilterComponent />
-    </div>
+        <FilterComponent />
+      </div>
       <div class="product-list">
         <div class="product-row" v-for="(row, index) in numberOfRows" :key="index">
           <div v-for="(product, rowIndex) in productsInRow(index)" :key="rowIndex" class="product-container">
@@ -15,27 +15,47 @@
               <div class="product-container-info-In">
                 <div class="product-container-info-detailing">
                   <p class="price">{{ product.price }} грн</p>
-                  
                 </div>
-                <Shop />
+                <button @click="handleShopClick(product)" class="shop-button">
+                  <img :src="currentImage(product)" alt="Shop button" @mouseover="toggleHover(product, true)" @mouseleave="toggleHover(product, false)" />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
     <Footer />
+    <div v-if="message" class="message">{{ message }}</div>
+    <div v-if="showPopup" class="popup">
+      <div class="popup-content">
+        <span class="close" @click="closePopup">&times;</span>
+        <h3>{{ popupProduct.title }}</h3>
+        <img :src="popupProduct.image" alt="Product Image" class="popup-image" />
+        <p>Ціна: {{ popupProduct.price }} грн</p>
+        <p>В наявності: {{ popupProduct.inStock }}</p>
+        <div class="popup-buttons">
+          <button @click="continueShopping" class="continue-shopping-btn">Продовжити покупки</button>
+          <button @click="finalizeOrder(popupProduct)" class="finalize-order-btn">Оформити замовлення</button>
+        </div>
+        <div class="quantity">
+          <label for="quantity">Кількість:</label>
+          <input type="number" id="quantity" v-model="popupProduct.quantity" min="1">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';  
-
 import Menu from '@/components/Menu.vue';
 import Footer from '@/components/footer.vue';
 import FilterComponent from '@/components/goods/filter.vue';
 import Shop from "@/components/index/Shop.vue";
+
+import ShopImage from "@/assets/shop.svg";
+import ShopHoverImage from "@/assets/shop-hover.svg";
 
 export default {
   components: {
@@ -46,18 +66,26 @@ export default {
   },
   data() {
     return {
-      products: [],  // Initialize products as an empty array
-      currentIndex: 0  // Assuming you have currentIndex defined elsewhere
+      products: [],
+      currentIndex: 0,
+      ShopImage: ShopImage,
+      ShopHoverImage: ShopHoverImage,
+      message: '',
+      showPopup: false,
+      popupProduct: {}, // Додано стан для відображення вікна з деталями продукту
+      shoppingCart: [],  // Додано стан для кошика покупок
+      isAuthenticated: false  // Додано стан для перевірки автентифікації
     };
   },
   computed: {
-    // Calculate number of rows needed based on products length and items per row
     numberOfRows() {
       return Math.ceil(this.products.length / 3);
     }
   },
   created() {
     this.fetchData();
+    this.checkAuthentication();
+    this.loadShoppingCart(); // Завантажити кошик із локального сховища при ініціалізації
   },
   methods: {
     fetchData() {
@@ -69,17 +97,63 @@ export default {
           console.error("Сталася помилка при отриманні даних!", error);
         });
     },
-    // Method to get products for a specific row
+    checkAuthentication() {
+      const token = localStorage.getItem('token');
+      this.isAuthenticated = !!token;
+    },
+    loadShoppingCart() {
+      const storedCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+      this.shoppingCart = storedCart;
+    },
     productsInRow(rowIndex) {
       const start = rowIndex * 3;
       return this.products.slice(start, start + 3);
+    },
+    handleShopClick(product) {
+      this.popupProduct = { ...product, quantity: 1 };
+      this.showPopup = true;
+    },
+    toggleHover(product, isHovered) {
+      product.hovered = isHovered;
+    },
+    currentImage(product) {
+      return product.hovered ? this.ShopHoverImage : this.ShopImage;
+    },
+    closePopup() {
+      this.showPopup = false;
+    },
+    finalizeOrder(product) {
+      if (this.isAuthenticated) {
+        this.addToCart(product);
+        this.$router.push('/shopping_cart');
+      } else {
+        alert('Ви не автентифіковані. Будь ласка, увійдіть для продовження оформлення замовлення.');
+      }
+      this.message = `Замовлено ${product.quantity} одиниць товару: ${product.title}`;
+      setTimeout(() => {
+        this.message = '';
+        this.showPopup = false;
+      }, 3000);
+    },
+    continueShopping() {
+      this.addToCart(this.popupProduct);
+      this.showPopup = false;
+    },
+    addToCart(product) {
+      const cartItem = this.shoppingCart.find(item => item.id === product.id);
+      if (cartItem) {
+        cartItem.quantity += product.quantity;
+      } else {
+        this.shoppingCart.push({ ...product });
+      }
+      localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
+      console.log("Shopping Cart:", this.shoppingCart); // Log the updated shopping cart to the console
     }
   }
 }
 </script>
 
 <style scoped>
-
 .product {
   margin-top: 700px;
   display: flex;
@@ -111,31 +185,31 @@ export default {
   gap: 20px;
   position: relative;
 }
+
 .filter {
   z-index: 10;
-  position: relative; /* Ви можете встановити position: relative; для кращого контролю */
+  position: relative;
 }
 
 .product-list {
-    z-index: 5; /* Зменште значення з-index для product-list, якщо filter все ще перекривається */
-    position: relative; /* Можливо, встановіть position: relative; */
-    margin-top: -90px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 40px;
-  }
+  z-index: 5;
+  position: relative;
+  margin-top: -90px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+}
 
 .product-row {
-
   margin-left: 100px;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Adjust alignment as needed */
+  align-items: flex-start;
   width: 100%;
-  gap: 20px; /* Adjust gap between rows */
+  gap: 20px;
 }
 
 .product-container {
@@ -143,8 +217,8 @@ export default {
   width: 255px;
   height: 355px;
   background: #f1f1f1;
-  margin-bottom: 20px; /* Equal space at the bottom */
-  margin-right: 20px; /* Equal space on the right */
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
 
 .product-container-info {
@@ -157,10 +231,10 @@ export default {
 }
 
 .product-container-img {
-  margin: 30px auto; /* Center image horizontally */
+  margin: 30px auto;
   width: 97px;
   height: 132px;
-  display: block; /* Ensure image is centered properly */
+  display: block;
 }
 
 .product-container-info-title {
@@ -205,5 +279,81 @@ export default {
   color: #000;
   font-family: var(--font-family);
   margin: 0;
+}
+
+.shop-button {
+  margin-left: 15px;
+  margin-top: 13px;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.popup-buttons {
+  margin-top: 20px;
+}
+
+.continue-shopping-btn,
+.finalize-order-btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.quantity {
+  margin-top: 20px;
+}
+
+.quantity label {
+  font-weight: bold;
+}
+
+.quantity input {
+  width: 50px;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
 </style>

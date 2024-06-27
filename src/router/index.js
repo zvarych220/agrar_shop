@@ -17,6 +17,8 @@ import Fyngicidu from '@/components/goods/Fyngicudu.vue';
 import Desicantu from '@/components/goods/Desukantu.vue';
 import Add_goods from '@/components/profil_admin/pages_admin/add_goods.vue';
 import Add_admin from '@/components/profil_admin/pages_admin/add_admin.vue';
+import Reset_pas from '@/components/profile/profil-pages/unlock.vue'
+
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -36,6 +38,7 @@ const routes = [
   { path: '/add_goods', name: 'Add_goods', component: Add_goods, meta: { requiresAuth: true } },
   { path: '/add_admin', name: 'Add_admin', component: Add_admin },
   { path: '/shopping_cart', name: 'Shopping_cart', component: Shopping_cart, meta: { requiresAuth: true } },
+  { path: '/reset_pas', name: 'Reset_pas', component: Reset_pas },
 ];
 
 const router = createRouter({

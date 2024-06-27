@@ -1,16 +1,15 @@
 <template>
     <div class="menu_profile">
-    <ul class="sidebar-menu">
-        <li class="menu-list" v-for="item in menuItems" :key="item.id">
-            <a href="#" class="list-link" :class="{ active: item.active }"
-                @mouseover="item.hover = true" @mouseleave="item.hover = false"
-                @click.prevent="setActive(item)">
-                <img :src="item.hover || item.active ? item.hoverImage : item.image" alt="">
-                {{ item.text }}
-            </a>
-        </li>
-    </ul>
-</div>
+        <ul class="sidebar-menu">
+            <li class="menu-list" v-for="item in menuItems" :key="item.id">
+                <a href="#" class="list-link" :class="{ active: item.active }" @mouseover="item.hover = true"
+                    @mouseleave="item.hover = false" @click.prevent="setActive(item)">
+                    <img :src="item.hover || item.active ? item.hoverImage : item.image" alt="">
+                    {{ item.text }}
+                </a>
+            </li>
+        </ul>
+    </div>
 </template>
 <script>
 import history_hover from "@/assets/history-hover.svg";
@@ -87,15 +86,21 @@ export default {
             if (selectedItem.id === 6) {
                 this.logout();
             }
+            else if (selectedItem.id === 4) {
+                this.reset_pass();
+            }
         },
         logout() {
-    console.log("Logging out...");
+            console.log("Logging out...");
 
-    localStorage.removeItem('token'); 
-    
+            localStorage.removeItem('token');
 
-    window.location.href = "/login";
-}
+
+            window.location.href = "/login";
+        },
+        reset_pass() {
+            window.location.href = "/reset_pas";
+        },
 
     },
 };
@@ -104,7 +109,7 @@ export default {
 .menu_profile {
     width: 255px;
     height: 305px;
-    margin-right: 15px; 
+    margin-right: 15px;
 }
 
 .sidebar-menu {
